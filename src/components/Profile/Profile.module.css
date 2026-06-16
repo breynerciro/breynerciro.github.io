@@ -1,0 +1,23 @@
+.section {
+  padding: 0 0 3.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.text {
+  font-size: 0.92rem;
+  color: var(--text-2);
+  line-height: 1.8;
+  max-width: 640px;
+  margin-bottom: 1rem;
+}
+
+.text:last-child {
+  margin-bottom: 0;
+}
+
+.lead {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-1);
+  line-height: 1.7;
+}

@@ -1,0 +1,10 @@
+.footer {
+  padding: 2.5rem 0 4rem;
+}
+
+.text {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-3);
+  letter-spacing: 0.05em;
+}
