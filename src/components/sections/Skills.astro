@@ -1,0 +1,105 @@
+---
+import { type Locale } from '../../i18n/locales';
+import { t } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const translate = t(locale);
+
+const skillGroups = [
+  {
+    titleKey: 'skills.backend',
+    icon: 'server',
+    skills: [
+      { name: 'Node.js', level: 95 },
+      { name: 'Express', level: 90 },
+      { name: 'PostgreSQL', level: 88 },
+      { name: 'MySQL', level: 85 },
+      { name: 'Redis', level: 75 },
+      { name: 'Python (FastAPI/Django)', level: 80 },
+    ],
+  },
+  {
+    titleKey: 'skills.frontend',
+    icon: 'layout',
+    skills: [
+      { name: 'Vue.js (Vue 2/3)', level: 92 },
+      { name: 'Pinia / Vuex', level: 88 },
+      { name: 'TypeScript', level: 87 },
+      { name: 'JavaScript (ES6+)', level: 95 },
+      { name: 'React', level: 75 },
+      { name: 'HTML5 / CSS3', level: 90 },
+    ],
+  },
+  {
+    titleKey: 'skills.devops',
+    icon: 'cloud',
+    skills: [
+      { name: 'Docker', level: 88 },
+      { name: 'Docker Compose', level: 85 },
+      { name: 'AWS', level: 80 },
+      { name: 'GitHub Actions', level: 82 },
+      { name: 'GitFlow', level: 90 },
+      { name: 'REST APIs', level: 92 },
+    ],
+  },
+  {
+    titleKey: 'skills.methods',
+    icon: 'check',
+    skills: [
+      { name: 'Scrum', level: 90 },
+      { name: 'Code Reviews', level: 92 },
+      { name: 'CI/CD', level: 85 },
+      { name: 'Clean Code', level: 88 },
+      { name: 'Inglés (B2)', level: 78 },
+      { name: 'Portugués (B2)', level: 75 },
+    ],
+  },
+];
+---
+
+<section id="skills" class="scroll-mt-20 py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+        {translate('skills.title')}
+        <span class="ml-2 text-brand-500">.</span>
+      </h2>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      {skillGroups.map((group) => (
+        <div
+          class="rounded-2xl border border-border bg-bg-alt p-6
+                 dark:border-surface-800"
+        >
+          <h3 class="mb-5 text-lg font-bold text-text">
+            {translate(group.titleKey)}
+          </h3>
+          <div class="space-y-4">
+            {group.skills.map((skill) => (
+              <div>
+                <div class="mb-1.5 flex items-center justify-between">
+                  <span class="text-sm font-medium text-text">{skill.name}</span>
+                  <span class="text-xs font-medium text-text-muted">{skill.level}%</span>
+                </div>
+                <div class="h-2 overflow-hidden rounded-full bg-surface-200 dark:bg-surface-800">
+                  <div
+                    class="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400
+                           transition-all duration-1000"
+                    style={`width: ${skill.level}%`}
+                  >
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

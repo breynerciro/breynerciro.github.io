@@ -1,0 +1,54 @@
+---
+import { type Locale } from '../../i18n/locales';
+import { t } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const translate = t(locale);
+
+const stats = [
+  { value: '3+', key: 'about.stat experience' },
+  { value: '5+', key: 'about.stat projects' },
+  { value: '100%', key: 'about.stat clients' },
+];
+---
+
+<section id="about" class="scroll-mt-20 py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+        {translate('about.title')}
+        <span class="ml-2 text-brand-500">.</span>
+      </h2>
+    </div>
+
+    <div class="grid gap-12 lg:grid-cols-5">
+      <!-- Text content -->
+      <div class="space-y-6 lg:col-span-3">
+        <p class="text-lg leading-relaxed text-text-muted">
+          {translate('about.p1')}
+        </p>
+        <p class="text-lg leading-relaxed text-text-muted">
+          {translate('about.p2')}
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex flex-col gap-6 lg:col-span-2">
+        {stats.map((stat) => (
+          <div
+            class="rounded-2xl border border-border bg-bg-alt p-6 transition-colors
+                   hover:border-brand-300 dark:border-surface-800 dark:hover:border-brand-700"
+          >
+            <div class="text-3xl font-extrabold text-brand-500">{stat.value}</div>
+            <div class="mt-1 text-sm font-medium text-text-muted">{translate(stat.key)}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogCard from '../../../components/cards/BlogCard.astro';
+import { getLocalized } from '../../../utils/content';
+import { t } from '../../../i18n/utils';
+
+const locale = 'en' as const;
+const translate = t(locale);
+const posts = await getLocalized('blog', locale);
+---
+
+<BaseLayout
+  locale={locale}
+  title="Blog — Breyner Ciro"
+  description="Articles about fullstack development, Node.js, Vue.js, Docker and software architecture."
+  canonicalPath="/blog/"
+>
+  <section class="py-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <!-- Section header -->
+      <div class="mb-12">
+        <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">
+          {translate('blog.title')}
+          <span class="ml-2 text-brand-500">.</span>
+        </h1>
+      </div>
+
+      {posts.length > 0 ? (
+        <div class="grid gap-6 sm:grid-cols-2">
+          {posts.map((post) => (
+            <BlogCard post={post} locale={locale} />
+          ))}
+        </div>
+      ) : (
+        <p class="text-text-muted">{translate('blog.noPosts')}</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

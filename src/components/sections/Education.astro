@@ -1,0 +1,99 @@
+---
+import { type Locale } from '../../i18n/locales';
+import { t } from '../../i18n/utils';
+import { getLocalized, formatDate } from '../../utils/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const translate = t(locale);
+const certs = await getLocalized('certifications', locale);
+---
+
+<section id="education" class="scroll-mt-20 py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+        {translate('education.title')}
+        <span class="ml-2 text-brand-500">.</span>
+      </h2>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2">
+      <!-- Degree -->
+      <div
+        class="rounded-2xl border border-border bg-bg-alt p-6
+               dark:border-surface-800"
+      >
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100
+                    dark:bg-brand-900/30">
+          <svg
+            class="h-6 w-6 text-brand-600 dark:text-brand-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+          </svg>
+        </div>
+
+        <h3 class="mb-2 text-lg font-bold text-text">{translate('education.degree')}</h3>
+        <p class="mb-1 text-sm font-semibold text-brand-500">
+          Ingeniería de Sistemas y Computación
+        </p>
+        <p class="mb-3 text-sm text-text-muted">Universidad Nacional de Colombia</p>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-text-muted">2018 — 2026</span>
+          <span
+            class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700
+                   dark:bg-amber-900/30 dark:text-amber-400"
+          >
+            {translate('education.pending')}
+          </span>
+        </div>
+        <p class="mt-2 text-xs text-text-muted">
+          Ceremonia oficial: 2 de Septiembre de 2026
+        </p>
+      </div>
+
+      <!-- Certifications -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-text">{translate('education.certs')}</h3>
+
+        {certs.length > 0 ? (
+          certs.map((cert) => (
+            <div
+              class="rounded-xl border border-border bg-bg-alt p-4
+                     transition-colors hover:border-brand-300
+                     dark:border-surface-800 dark:hover:border-brand-700"
+            >
+              <p class="mb-1 text-sm font-semibold text-text">{cert.data.title}</p>
+              <p class="text-xs text-text-muted">{cert.data.issuer}</p>
+              <div class="mt-2 flex items-center gap-2">
+                <span class="text-xs text-text-muted">
+                  {formatDate(cert.data.issuedDate, locale)}
+                </span>
+                {cert.data.credentialUrl && (
+                  <a
+                    href={cert.data.credentialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-xs font-medium text-brand-500 hover:underline"
+                  >
+                    Ver credencial →
+                  </a>
+                )}
+              </div>
+            </div>
+          ))
+        ) : (
+          <p class="text-sm text-text-muted">No certifications for this language yet.</p>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

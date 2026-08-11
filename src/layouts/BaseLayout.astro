@@ -1,0 +1,97 @@
+---
+import type { Locale } from '../i18n/locales';
+import { defaultLocale } from '../i18n/locales';
+import { buildSEO } from '../utils/seo';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  locale?: Locale;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalPath?: string;
+}
+
+const {
+  locale = defaultLocale,
+  title = 'Breyner Ciro — Desarrollador FullStack Senior',
+  description = 'Portafolio profesional de Breyner Ciro, Desarrollador FullStack Senior especializado en Node.js, Vue.js y bases de datos relacionales.',
+  ogImage,
+  canonicalPath = '/',
+} = Astro.props;
+
+const seo = buildSEO(
+  { title, description, canonicalPath, ogImage, locale },
+  Astro.site?.toString() ?? 'https://breynerciro.github.io',
+);
+---
+
+<!doctype html>
+<html lang={locale} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta -->
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <meta name="author" content="Breyner Ciro" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={seo.canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={seo.ogUrl} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:locale" content={locale === 'es' ? 'es_CO' : locale === 'pt' ? 'pt_BR' : 'en_US'} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    <meta name="twitter:image" content={seo.ogImage} />
+
+    <!-- Hreflang alternates -->
+    {seo.hreflangs.map(({ locale: l, url }) => (
+      <link rel="alternate" hreflang={l} href={url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={seo.xDefault} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preconnect fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Dark mode FOUC prevention — must run before body -->
+    <script is:inline>
+      (function () {
+        var theme = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = theme === 'dark' || (!theme && prefersDark);
+        document.documentElement.classList.toggle('dark', isDark);
+      })();
+    </script>
+  </head>
+
+  <body class="min-h-screen bg-bg text-text antialiased">
+    <Header locale={locale} />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer locale={locale} />
+  </body>
+</html>

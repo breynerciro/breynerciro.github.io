@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { t, getLocaleFromUrl } from '../i18n/utils';
+
+const locale = getLocaleFromUrl(Astro.url);
+const translate = t(locale);
+
+// Pre-render for all locales so the browser-side swap has data.
+const messages = {
+  es: { title: translate('404.title'), description: translate('404.description'), home: translate('404.home') },
+  en: { title: translate('404.title'), description: translate('404.description'), home: translate('404.home') },
+  pt: { title: translate('404.title'), description: translate('404.description'), home: translate('404.home') },
+};
+---
+
+<BaseLayout locale={locale} title="404 — Breyner Ciro" canonicalPath="/">
+  <section class="flex min-h-[70vh] items-center justify-center py-20">
+    <div class="mx-auto max-w-xl px-4 text-center sm:px-6">
+      <p class="mb-4 font-mono text-8xl font-bold text-brand-500">404</p>
+      <h1 id="not-found-title" class="mb-4 text-3xl font-bold tracking-tight text-text">
+        {messages.es.title}
+      </h1>
+      <p id="not-found-desc" class="mb-8 text-text-muted">
+        {messages.es.description}
+      </p>
+      <a
+        id="not-found-home"
+        href="/"
+        class="inline-flex items-center justify-center rounded-lg bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
+      >
+        {messages.es.home}
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    // Detect the locale from the current pathname and swap the 404 copy.
+    var path = window.location.pathname;
+    var locale = path.startsWith('/en/') || path === '/en' ? 'en' : path.startsWith('/pt/') || path === '/pt' ? 'pt' : 'es';
+    var map = {
+      es: {
+        title: 'Página no encontrada',
+        description: 'Lo sentimos, la página que buscas no existe o fue movida.',
+        home: 'Volver al inicio',
+      },
+      en: {
+        title: 'Page not found',
+        description: "Sorry, the page you're looking for doesn't exist or was moved.",
+        home: 'Back to home',
+      },
+      pt: {
+        title: 'Página não encontrada',
+        description: 'Desculpe, a página que você procura não existe ou foi movida.',
+        home: 'Voltar ao início',
+      },
+    };
+    var m = map[locale];
+    document.getElementById('not-found-title').textContent = m.title;
+    document.getElementById('not-found-desc').textContent = m.description;
+    document.getElementById('not-found-home').textContent = m.home;
+  })();
+</script>

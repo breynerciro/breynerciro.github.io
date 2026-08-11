@@ -1,0 +1,17 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BlogPost from '../../../layouts/BlogPost.astro';
+import { getLocalized, slugFromId } from '../../../utils/content';
+
+export const getStaticPaths = (async () => {
+  const posts = await getLocalized('blog', 'pt');
+  return posts.map((post) => ({
+    params: { slug: slugFromId(post.id) },
+    props: { entry: post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+---
+
+<BlogPost entry={entry} locale="pt" />

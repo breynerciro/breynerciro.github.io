@@ -1,0 +1,36 @@
+---
+import { type Locale } from '../../i18n/locales';
+import { t } from '../../i18n/utils';
+import { getLocalized } from '../../utils/content';
+import ProjectCard from '../cards/ProjectCard.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const translate = t(locale);
+const projects = await getLocalized('projects', locale);
+---
+
+<section id="projects" class="scroll-mt-20 py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="mb-12">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
+        {translate('projects.title')}
+        <span class="ml-2 text-brand-500">.</span>
+      </h2>
+    </div>
+
+    {projects.length > 0 ? (
+      <div class="grid gap-6 sm:grid-cols-2">
+        {projects.map((project) => (
+          <ProjectCard project={project} locale={locale} />
+        ))}
+      </div>
+    ) : (
+      <p class="text-text-muted">No projects for this language yet.</p>
+    )}
+  </div>
+</section>
