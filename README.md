@@ -1,43 +1,56 @@
-# Astro Starter Kit: Minimal
+# Breyner Ciro — Portafolio Personal
 
-```sh
-npm create astro@latest -- --template minimal
-```
+> 🌐 **Visita el sitio:** **[https://breynerciro.github.io](https://breynerciro.github.io)**
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Portafolio profesional de **Breyner Ciro**, Desarrollador FullStack Senior — construido con **Astro 7**, **Tailwind CSS v4** y desplegado en **GitHub Pages**.
 
-## 🚀 Project Structure
+[![Sitio en vivo](https://img.shields.io/badge/🌐_Sitio_en_vivo-breynerciro.github.io-blue?style=for-the-badge)](https://breynerciro.github.io)
 
-Inside of your Astro project, you'll see the following folders and files:
+---
+
+## ✨ Características
+
+- 🌍 **i18n en 3 idiomas** — Español (default), English, Português (con routing nativo de Astro)
+- 🌓 **Modo claro/oscuro** con persistencia en `localStorage` y prevención de *flash* (FOUC)
+- 📝 **Blog** con content collections (MD/MDX) y artículos localizados
+- 🎨 **Design tokens** CSS-first con Tailwind v4 (`@theme`)
+- 🧭 **SEO completo** — Open Graph, Twitter Cards, canonical, hreflang por idioma, sitemap
+- ⚡ **100% estático** — build en `dist/`, sin JS en el runtime salvo interactividad mínima
+
+## 🗂️ Estructura
 
 ```text
 /
-├── public/
+├── public/            # favicon, robots.txt
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/    # Header, Footer, secciones, tarjetas
+│   ├── content/       # Collections por idioma: es/ en/ pt/
+│   │   ├── blog/
+│   │   ├── certifications/
+│   │   ├── experience/
+│   │   └── projects/
+│   ├── i18n/          # locales, diccionario de UI, utils
+│   ├── layouts/       # BaseLayout, BlogPost
+│   ├── pages/         # /, /en/, /pt/, /blog/[...slug]/
+│   ├── styles/        # global.css (Tailwind v4 + tokens)
+│   └── utils/         # content, seo
+├── astro.config.mjs   # i18n, sitemap, tailwind
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🧞 Comandos
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Comando          | Acción                                             |
+| :--------------- | :------------------------------------------------- |
+| `npm install`    | Instala dependencias                               |
+| `npm run dev`    | Servidor local en `localhost:4321`                 |
+| `npm run build`  | Build de producción a `./dist/`                    |
+| `npm run preview`| Previsualiza el build localmente                   |
+| `npx astro check`| Verificación de tipos                              |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🚀 Deploy
 
-## 🧞 Commands
+El repositorio está configurado con **GitHub Actions** (`.github/workflows/deploy.yml`): cada push a `main` construye el sitio y lo publica automáticamente en GitHub Pages.
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Origen en Settings → Pages:** GitHub Actions
+- **URL:** https://breynerciro.github.io
