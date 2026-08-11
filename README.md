@@ -47,10 +47,3 @@ Portafolio profesional de **Breyner Ciro**, Desarrollador FullStack Senior — c
 | `npm run build`  | Build de producción a `./dist/`                    |
 | `npm run preview`| Previsualiza el build localmente                   |
 | `npx astro check`| Verificación de tipos                              |
-
-## 🚀 Deploy
-
-El repositorio está configurado con **GitHub Actions** (`.github/workflows/deploy.yml`): cada push a `main` construye el sitio y lo publica automáticamente en GitHub Pages.
-
-- **Origen en Settings → Pages:** GitHub Actions
-- **URL:** https://breynerciro.github.io
