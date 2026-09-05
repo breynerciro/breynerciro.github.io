@@ -1,10 +1,10 @@
 ---
 locale: en
 key: workio
-title: 'WORKIO — Microservices Architecture'
-description: 'Distributed microservices architecture for concurrent request processing with JWT authentication, relational schemas in PostgreSQL, and Docker containers for production.'
+title: 'WORKIO — Arquitectura de Microservicios & APIs'
+description: 'Distributed architecture for concurrent request processing with Node.js, Express, PostgreSQL and Docker deployment.'
 pubDate: 2025-06-01
 stack: ['Node.js', 'Express', 'PostgreSQL', 'Docker', 'JWT']
 featured: true
-tags: ['microservices', 'docker', 'jwt']
+tags: ['Microservices', 'Backend', 'Docker']
 ---

@@ -1,16 +1,18 @@
 ---
 locale: en
 key: cardiodiagnostico
-title: 'FullStack Developer'
-description: 'Medical diagnostics system at Cardiodiagnóstico Putumayo: high-performance Node.js APIs, Vue.js SPA frontend, and PostgreSQL/MySQL database optimization.'
-company: 'Cardiodiagnóstico Putumayo'
-role: 'FullStack Developer'
+title: 'Frontend Developer'
+description: 'Single Page Application (SPA) for the healthcare sector with React, TypeScript and Tailwind CSS. Direct channels implementation via WhatsApp API.'
+company: 'CardioDiagnostico del Sur'
+role: 'Frontend Developer'
 location: 'Colombia'
 startDate: 2024-01-01
-current: true
-tags: ['Node.js', 'Vue.js', 'PostgreSQL', 'MySQL', 'Webhooks']
+endDate: 2024-08-31
+current: false
+tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite']
 highlights:
-  - 'Increased system response speed by 35% by optimizing complex queries in PostgreSQL/MySQL and rebuilding endpoints in Node.js with Express.'
-  - 'Improved user retention and navigation fluidity by 25%, building high-performance SPA interfaces with Vue.js (Vue 3) and centralized state management with Pinia/Vuex.'
-  - 'Automated transactional data flow with 99.8% reliability, designing communication architectures with RESTful APIs and Webhooks.'
+  - 'Built a Single Page Application (SPA) for the health sector using React and TypeScript, ensuring robust, scalable, and strongly-typed code.'
+  - 'Designed a modern and 100% responsive interface with Tailwind CSS, ensuring optimal display of services on both mobile and desktop devices.'
+  - 'Implemented direct communication channels and optimized patient appointment scheduling through interactive forms and WhatsApp API integration.'
+  - 'Managed the build and production deployment by structuring an optimized bundle with Vite and deploying the website on Hostinger.'
 ---

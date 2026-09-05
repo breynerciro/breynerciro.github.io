@@ -2,8 +2,8 @@
 locale: pt
 key: software-quality
 title: 'Qualidade e Arquitetura de Software'
-description: 'Especialização em métricas de qualidade, refatoração, testes e padrões de arquitetura de software.'
-issuer: 'Universidad Nacional de Colombia'
-issuedDate: 2026-01-01
-tags: ['software-quality', 'architecture']
+description: 'Curso de 64h focado em padrões de design, código limpo e testes.'
+issuer: 'Universidade Nacional da Colômbia'
+issuedDate: 2026-05-01
+tags: ['Architecture', 'Clean Code', 'QA']
 ---

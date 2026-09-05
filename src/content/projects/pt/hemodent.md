@@ -1,10 +1,10 @@
 ---
 locale: pt
 key: hemodent
-title: 'HEMODENT — Sistema de Gestão Médica'
-description: 'Sistema integrado de gestão médica e plataforma cross-platform desenvolvida para a Universidade Nacional da Colômbia. Arquitetura completa com TypeScript, reatividade no frontend e armazenamento relacional otimizado.'
-pubDate: 2026-01-15
-stack: ['TypeScript', 'Vue.js', 'PostgreSQL', 'Node.js']
+title: 'HEMODENT — Aplicativo Móvel Educativo de Saúde'
+description: 'Aplicativo móvel multiplataforma voltado para pacientes com hemofilia. Persistência offline, temporizadores e UI adaptativa por idade.'
+pubDate: 2026-06-01
+stack: ['React Native', 'TypeScript', 'Expo']
 featured: true
-tags: ['medical', 'cross-platform', 'typescript']
+tags: ['Mobile', 'React Native', 'Health']
 ---

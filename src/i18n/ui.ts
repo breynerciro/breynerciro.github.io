@@ -13,15 +13,15 @@ export const ui = {
     // Hero
     'hero.greeting': 'Hola, soy',
     'hero.name': 'Breyner Ciro',
-    'hero.role': 'Desarrollador FullStack Senior',
-    'hero.subtitle': 'Especializado en Node.js, Vue.js y bases de datos relacionales',
+    'hero.role': 'Ingeniero de Sistemas / FullStack',
+    'hero.subtitle': 'Especializado en arquitecturas de microservicios, bases de datos relacionales y despliegues (AWS, Docker)',
     'hero.cta': 'Ver proyectos',
     'hero.cta secondary': 'Contactar',
 
     // About
     'about.title': 'Sobre mí',
-    'about.p1': 'Ingeniero de Sistemas con +3 años de experiencia construyendo APIs de alto rendimiento en Node.js y optimizando bases de datos relacionales. Apasionado por crear soluciones escalables que combinan un backend robusto con interfaces de usuario fluidas y modernas.',
-    'about.p2': 'Especializado en arquitecturas cloud, contenerización con Docker y metodologías ágiles. Me gusta resolver problemas complejos y trabajar en equipo para entregar productos de calidad.',
+    'about.p1': 'Ingeniero de Sistemas y Computación con sólida experiencia en el diseño y desarrollo de aplicaciones web y móviles escalables. Capacidad demostrada para trabajar en todo el ciclo de vida del software, adaptándome ágilmente a roles Frontend, Backend y FullStack.',
+    'about.p2': 'Especializado en la construcción de arquitecturas de microservicios, optimización de bases de datos relacionales y despliegues automatizados en la nube (AWS, Docker). Apasionado por las buenas prácticas (Clean Code), la integración de APIs y el desarrollo de interfaces de usuario eficientes y responsivas.',
     'about.stat experience': 'Años de experiencia',
     'about.stat projects': 'Proyectos completados',
     'about.stat clients': 'Clientes satisfechos',
@@ -91,15 +91,15 @@ export const ui = {
     // Hero
     'hero.greeting': "Hi, I'm",
     'hero.name': 'Breyner Ciro',
-    'hero.role': 'Senior FullStack Developer',
-    'hero.subtitle': 'Specialized in Node.js, Vue.js and relational databases',
+    'hero.role': 'Systems Engineer / FullStack',
+    'hero.subtitle': 'Specialized in microservices architectures, relational databases, and deployments (AWS, Docker)',
     'hero.cta': 'View projects',
     'hero.cta secondary': 'Contact me',
 
     // About
     'about.title': 'About Me',
-    'about.p1': 'Systems Engineer with 3+ years of experience building high-performance APIs in Node.js and optimizing relational databases. Passionate about creating scalable solutions that combine a robust backend with smooth, modern user interfaces.',
-    'about.p2': 'Specialized in cloud architectures, Docker containerization, and agile methodologies. I enjoy solving complex problems and working collaboratively to deliver quality products.',
+    'about.p1': 'Systems and Computing Engineer with solid experience in designing and developing scalable web and mobile applications. Proven ability to work across the entire software development lifecycle, adapting agilely to Frontend, Backend, and FullStack roles.',
+    'about.p2': 'Specialized in building microservices architectures, optimizing relational databases, and automated cloud deployments (AWS, Docker). Passionate about best practices (Clean Code), API integration, and developing efficient and responsive user interfaces.',
     'about.stat experience': 'Years of experience',
     'about.stat projects': 'Projects completed',
     'about.stat clients': 'Satisfied clients',
@@ -169,15 +169,15 @@ export const ui = {
     // Hero
     'hero.greeting': 'Olá, eu sou',
     'hero.name': 'Breyner Ciro',
-    'hero.role': 'Desenvolvedor FullStack Sênior',
-    'hero.subtitle': 'Especializado em Node.js, Vue.js e bancos de dados relacionais',
+    'hero.role': 'Engenheiro de Sistemas / FullStack',
+    'hero.subtitle': 'Especializado em arquiteturas de microsserviços, bancos de dados relacionais e implantações (AWS, Docker)',
     'hero.cta': 'Ver projetos',
     'hero.cta secondary': 'Entrar em contato',
 
     // About
     'about.title': 'Sobre Mim',
-    'about.p1': 'Engenheiro de Sistemas com mais de 3 anos de experiência construindo APIs de alto desempenho em Node.js e otimizando bancos de dados relacionais. Apaixonado por criar soluções escaláveis que combinam um backend robusto com interfaces de usuário modernas e fluidas.',
-    'about.p2': 'Especializado em arquiteturas cloud, containerização com Docker e metodologias ágeis. Gosto de resolver problemas complexos e trabalhar em equipe para entregar produtos de qualidade.',
+    'about.p1': 'Engenheiro de Sistemas e Computação com sólida experiência em design e desenvolvimento de aplicações web e móveis escaláveis. Capacidade comprovada para trabalhar em todo o ciclo de vida do software, adaptando-me agilmente a funções Frontend, Backend e FullStack.',
+    'about.p2': 'Especializado na construção de arquiteturas de microsserviços, otimização de bancos de dados relacionais e implantações automatizadas na nuvem (AWS, Docker). Apaixonado por boas práticas (Clean Code), integração de APIs e desenvolvimento de interfaces de usuário eficientes e responsivas.',
     'about.stat experience': 'Anos de experiência',
     'about.stat projects': 'Projetos concluídos',
     'about.stat clients': 'Clientes satisfeitos',
