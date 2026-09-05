@@ -15,16 +15,17 @@ const projects = await getLocalized('projects', locale);
 
 <section id="projects" class="scroll-mt-20 py-20">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
+
     <!-- Section header -->
     <div class="mb-12 font-mono">
-      <p class="mb-2 text-xs text-text-muted">
-        <span class="text-brand-500">breynerciro@portfolio</span><span class="text-text-muted">:</span><span class="text-accent-500">~/projects</span><span class="text-text-muted">$</span>
+      <p class="mb-1 text-xs text-[#94a3b8]">
+        <span class="text-[#4ade80]">breynerciro@portfolio</span><span class="text-[#94a3b8]">:~/projects$</span>
       </p>
-      <h2 class="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-        <span class="text-brand-500">></span> ./list_projects.sh
-        <span class="animate-pulse text-brand-500">_</span>
+      <h2 class="text-3xl font-bold text-[#f1f5f9] sm:text-4xl">
+        <span class="text-[#4ade80]">./projects</span>
+        <span class="animate-[blink_1.2s_step-end_infinite] text-[#4ade80]">▋</span>
       </h2>
-      <p class="mt-2 text-sm text-text-muted">// {translate('projects.title')}</p>
+      <p class="mt-1 text-xs text-[#94a3b8]">// {translate('projects.title')}</p>
     </div>
 
     {projects.length > 0 ? (
@@ -34,9 +35,17 @@ const projects = await getLocalized('projects', locale);
         ))}
       </div>
     ) : (
-      <p class="font-mono text-sm text-text-muted">
-        <span class="text-brand-500">></span> No output. No projects for this language yet.
+      <p class="font-mono text-sm text-[#94a3b8]">
+        <span class="text-[#4ade80]">›</span> No projects for this language yet.
       </p>
     )}
+
   </div>
 </section>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>

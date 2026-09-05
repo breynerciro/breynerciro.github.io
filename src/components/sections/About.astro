@@ -18,37 +18,39 @@ const stats = [
 
 <section id="about" class="scroll-mt-20 py-20">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
+
     <!-- Section header -->
     <div class="mb-12 font-mono">
-      <p class="mb-2 text-xs text-text-muted">
-        <span class="text-brand-500">breynerciro@portfolio</span><span class="text-text-muted">:</span><span class="text-accent-500">~</span><span class="text-text-muted">$</span>
+      <p class="mb-1 text-xs text-[#94a3b8]">
+        <span class="text-[#4ade80]">breynerciro@portfolio</span><span class="text-[#94a3b8]">:~$</span>
       </p>
-      <h2 class="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-        <span class="text-brand-500">></span> ./whoami.sh
-        <span class="animate-pulse text-brand-500">_</span>
+      <h2 class="text-3xl font-bold text-[#f1f5f9] sm:text-4xl">
+        <span class="text-[#4ade80]">./whoami</span>
+        <span class="animate-[blink_1.2s_step-end_infinite] text-[#4ade80]">▋</span>
       </h2>
-      <p class="mt-2 text-sm text-text-muted">// {translate('about.title')}</p>
+      <p class="mt-1 text-xs text-[#94a3b8]">// {translate('about.title')}</p>
     </div>
 
-    <div class="grid gap-12 lg:grid-cols-5">
-      <!-- Text content -->
+    <div class="grid gap-8 lg:grid-cols-5">
+
+      <!-- Text content — terminal window -->
       <div class="terminal-window lg:col-span-3">
         <div class="terminal-header">
           <div class="flex gap-1.5">
-            <div class="terminal-dot active"></div>
-            <div class="terminal-dot"></div>
-            <div class="terminal-dot"></div>
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
           </div>
-          <span class="ml-2 text-xs font-mono text-text-muted">~/about/README.md</span>
+          <span class="ml-2 text-xs font-mono text-[#94a3b8]">~/about/README.md</span>
         </div>
-        <div class="space-y-4 p-6 font-mono">
-          <p class="text-xs text-text-muted mb-4">
-            <span class="text-brand-500">$</span> cat README.md
+        <div class="p-6">
+          <p class="mb-4 font-mono text-xs text-[#94a3b8]">
+            <span class="text-[#4ade80]">$</span> cat README.md
           </p>
-          <p class="text-sm leading-relaxed text-text-muted">
+          <p class="mb-4 text-sm leading-7 text-[#cbd5e1]">
             {translate('about.p1')}
           </p>
-          <p class="text-sm leading-relaxed text-text-muted">
+          <p class="text-sm leading-7 text-[#cbd5e1]">
             {translate('about.p2')}
           </p>
         </div>
@@ -57,26 +59,32 @@ const stats = [
       <!-- Stats -->
       <div class="flex flex-col gap-4 lg:col-span-2">
         {stats.map((stat) => (
-          <div class="terminal-window transition-all hover:shadow-[0_0_20px_rgba(0,255,65,0.15)]">
+          <div class="terminal-window group transition-all hover:border-[#276749]">
             <div class="terminal-header">
               <div class="flex gap-1.5">
-                <div class="terminal-dot active"></div>
-                <div class="terminal-dot"></div>
-                <div class="terminal-dot"></div>
+                <span class="terminal-dot dot-red"></span>
+                <span class="terminal-dot dot-yellow"></span>
+                <span class="terminal-dot dot-green"></span>
               </div>
-              <span class="ml-2 text-xs font-mono text-text-muted">stat</span>
+              <span class="ml-2 text-xs font-mono text-[#94a3b8]">stat.log</span>
             </div>
             <div class="p-5 font-mono">
-              <div class="text-4xl font-extrabold text-brand-500 shadow-[0_0_10px_rgba(0,255,65,0.3)]">
-                {stat.value}
-              </div>
-              <div class="mt-2 text-xs font-medium text-text-muted">
-                <span class="text-brand-500">// </span>{translate(stat.key)}
+              <div class="text-4xl font-extrabold text-[#4ade80]">{stat.value}</div>
+              <div class="mt-2 text-xs text-[#94a3b8]">
+                <span class="text-[#4ade80]">// </span>{translate(stat.key)}
               </div>
             </div>
           </div>
         ))}
       </div>
+
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>

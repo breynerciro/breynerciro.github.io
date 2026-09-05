@@ -14,108 +14,118 @@ const certs = await getLocalized('certifications', locale);
 
 <section id="education" class="scroll-mt-20 py-20">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
+
     <!-- Section header -->
     <div class="mb-12 font-mono">
-      <p class="mb-2 text-xs text-text-muted">
-        <span class="text-brand-500">breynerciro@portfolio</span><span class="text-text-muted">:</span><span class="text-accent-500">~/education</span><span class="text-text-muted">$</span>
+      <p class="mb-1 text-xs text-[#94a3b8]">
+        <span class="text-[#4ade80]">breynerciro@portfolio</span><span class="text-[#94a3b8]">:~/education$</span>
       </p>
-      <h2 class="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-        <span class="text-brand-500">></span> ./show_education.sh
-        <span class="animate-pulse text-brand-500">_</span>
+      <h2 class="text-3xl font-bold text-[#f1f5f9] sm:text-4xl">
+        <span class="text-[#4ade80]">./education</span>
+        <span class="animate-[blink_1.2s_step-end_infinite] text-[#4ade80]">▋</span>
       </h2>
-      <p class="mt-2 text-sm text-text-muted">// {translate('education.title')}</p>
+      <p class="mt-1 text-xs text-[#94a3b8]">// {translate('education.title')}</p>
     </div>
 
     <div class="grid gap-8 lg:grid-cols-2">
-      <!-- Degree -->
+
+      <!-- Degree block -->
       <div class="terminal-window">
         <div class="terminal-header">
           <div class="flex gap-1.5">
-            <div class="terminal-dot active"></div>
-            <div class="terminal-dot"></div>
-            <div class="terminal-dot"></div>
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
           </div>
-          <span class="ml-2 text-xs font-mono text-text-muted">~/education/degree.md</span>
+          <span class="ml-2 text-xs font-mono text-[#94a3b8]">~/education/degree.md</span>
         </div>
         <div class="p-6 font-mono">
-          <p class="mb-4 text-xs text-text-muted">
-            <span class="text-brand-500">$</span> cat degree.md
+          <p class="mb-5 text-xs text-[#94a3b8]">
+            <span class="text-[#4ade80]">$</span> cat degree.md
           </p>
-          <h3 class="mb-5 text-base font-bold text-brand-400"># {translate('education.degree')}</h3>
+          <h3 class="mb-6 text-sm font-bold text-[#4ade80]">
+            # {translate('education.degree')}
+          </h3>
 
-          <div class="mb-5 border-l-2 border-brand-800 pl-4">
-            <p class="mb-1 text-sm font-semibold text-brand-500">
+          <!-- Entry 1 -->
+          <div class="mb-5 border-l-2 border-[#1e2d1e] pl-4">
+            <p class="mb-1 text-sm font-semibold text-[#e2e8f0]">
               Ingeniería de Sistemas y Computación
             </p>
-            <p class="mb-1 text-xs text-text-muted">Universidad Nacional de Colombia</p>
-            <p class="text-xs text-text-muted">
-              <span class="text-brand-700">##</span> 2018 — 2026
-            </p>
+            <p class="mb-1 text-xs text-[#94a3b8]">Universidad Nacional de Colombia</p>
+            <p class="text-xs text-[#94a3b8]">2018 — 2026</p>
           </div>
 
-          <div class="border-l-2 border-brand-800 pl-4">
-            <p class="mb-1 text-sm font-semibold text-brand-500">
+          <!-- Entry 2 -->
+          <div class="border-l-2 border-[#1e2d1e] pl-4">
+            <p class="mb-1 text-sm font-semibold text-[#e2e8f0]">
               Técnico Laboral en Sistemas Informáticos
             </p>
-            <p class="mb-1 text-xs text-text-muted">POLINTEC</p>
-            <p class="text-xs text-text-muted">
-              <span class="text-brand-700">##</span> 2016
-            </p>
+            <p class="mb-1 text-xs text-[#94a3b8]">POLINTEC</p>
+            <p class="text-xs text-[#94a3b8]">2016</p>
           </div>
         </div>
       </div>
 
       <!-- Certifications -->
-      <div class="space-y-4">
-        <div class="font-mono mb-4">
-          <p class="text-xs text-text-muted">
-            <span class="text-brand-500">$</span> ls ./certifications/
+      <div>
+        <div class="mb-5 font-mono">
+          <p class="text-xs text-[#94a3b8]">
+            <span class="text-[#4ade80]">$</span> ls ./certifications/
           </p>
-          <h3 class="mt-1 text-base font-bold text-brand-400"># {translate('education.certs')}</h3>
+          <h3 class="mt-1 text-sm font-bold text-[#4ade80]"># {translate('education.certs')}</h3>
         </div>
 
-        {certs.length > 0 ? (
-          certs.map((cert) => (
-            <div class="terminal-window transition-all hover:shadow-[0_0_15px_rgba(0,255,65,0.1)]">
-              <div class="terminal-header">
-                <div class="flex gap-1.5">
-                  <div class="terminal-dot active"></div>
-                  <div class="terminal-dot"></div>
-                  <div class="terminal-dot"></div>
-                </div>
-                <span class="ml-2 text-xs font-mono text-text-muted truncate">
-                  ~/certs/{cert.data.title.toLowerCase().replace(/\s+/g, '-')}.cert
-                </span>
-              </div>
-              <div class="p-4 font-mono">
-                <p class="mb-0.5 text-sm font-semibold text-brand-400">{cert.data.title}</p>
-                <p class="text-xs text-text-muted">
-                  <span class="text-brand-700">@</span> {cert.data.issuer}
-                </p>
-                <div class="mt-2 flex items-center gap-3">
-                  <span class="text-xs text-text-muted">
-                    <span class="text-brand-700">//</span> {formatDate(cert.data.issuedDate, locale)}
+        <div class="space-y-3">
+          {certs.length > 0 ? (
+            certs.map((cert) => (
+              <div class="terminal-window transition-all hover:border-[#276749]">
+                <div class="terminal-header">
+                  <div class="flex gap-1.5">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                  </div>
+                  <span class="ml-2 truncate text-xs font-mono text-[#94a3b8]">
+                    {cert.data.title.toLowerCase().replace(/\s+/g, '-')}.cert
                   </span>
-                  {cert.data.credentialUrl && (
-                    <a
-                      href={cert.data.credentialUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-xs font-medium text-accent-500 hover:text-accent-400 transition-colors"
-                    >
-                      → ver credencial
-                    </a>
-                  )}
+                </div>
+                <div class="p-4 font-mono">
+                  <p class="mb-0.5 text-sm font-semibold text-[#e2e8f0]">{cert.data.title}</p>
+                  <p class="text-xs text-[#94a3b8]">@ {cert.data.issuer}</p>
+                  <div class="mt-2 flex items-center gap-3">
+                    <span class="text-xs text-[#94a3b8]">
+                      {formatDate(cert.data.issuedDate, locale)}
+                    </span>
+                    {cert.data.credentialUrl && (
+                      <a
+                        href={cert.data.credentialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-xs font-medium text-[#22d3ee] transition-colors hover:text-[#67e8f9]"
+                      >
+                        → ver credencial
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p class="font-mono text-sm text-text-muted">
-            <span class="text-brand-500">></span> No output. No certifications for this language yet.
-          </p>
-        )}
+            ))
+          ) : (
+            <p class="font-mono text-sm text-[#94a3b8]">
+              <span class="text-[#4ade80]">›</span> No certifications for this language yet.
+            </p>
+          )}
+        </div>
       </div>
     </div>
+
   </div>
 </section>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>

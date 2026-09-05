@@ -14,84 +14,81 @@ const experiences = await getLocalized('experience', locale);
 
 <section id="experience" class="scroll-mt-20 py-20">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
+
     <!-- Section header -->
     <div class="mb-12 font-mono">
-      <p class="mb-2 text-xs text-text-muted">
-        <span class="text-brand-500">breynerciro@portfolio</span><span class="text-text-muted">:</span><span class="text-accent-500">~/experience</span><span class="text-text-muted">$</span>
+      <p class="mb-1 text-xs text-[#94a3b8]">
+        <span class="text-[#4ade80]">breynerciro@portfolio</span><span class="text-[#94a3b8]">:~/experience$</span>
       </p>
-      <h2 class="text-3xl font-bold tracking-tight text-text sm:text-4xl">
-        <span class="text-brand-500">></span> ./show_experience.sh
-        <span class="animate-pulse text-brand-500">_</span>
+      <h2 class="text-3xl font-bold text-[#f1f5f9] sm:text-4xl">
+        <span class="text-[#4ade80]">./experience</span>
+        <span class="animate-[blink_1.2s_step-end_infinite] text-[#4ade80]">▋</span>
       </h2>
-      <p class="mt-2 text-sm text-text-muted">// {translate('experience.title')}</p>
+      <p class="mt-1 text-xs text-[#94a3b8]">// {translate('experience.title')}</p>
     </div>
 
     {experiences.length > 0 ? (
       <div class="relative space-y-0">
-        <!-- Timeline line -->
-        <div
-          class="absolute left-4 top-0 h-full w-px border-l border-dashed border-brand-800
-                 sm:left-6"
-        >
-        </div>
+        <!-- Timeline: dashed vertical line -->
+        <div class="absolute left-[15px] top-0 h-full w-px border-l border-dashed border-[#1e2d1e] sm:left-[23px]"></div>
 
         {experiences.map((exp, i) => (
-          <div class="relative flex gap-6 pb-10 last:pb-0">
-            <!-- Timeline dot -->
+          <div class="relative flex gap-5 pb-10 last:pb-0 sm:gap-7">
+            <!-- Timeline node -->
             <div class="relative z-10 flex-shrink-0">
               <div
                 class:list={[
                   'flex h-8 w-8 items-center justify-center border font-mono text-xs sm:h-12 sm:w-12',
                   i === 0
-                    ? 'border-brand-500 bg-brand-950 text-brand-500 shadow-[0_0_10px_rgba(0,255,65,0.3)]'
-                    : 'border-brand-800 bg-bg text-brand-800',
+                    ? 'border-[#4ade80] bg-[#071a11] text-[#4ade80]'
+                    : 'border-[#1e2d1e] bg-[#0a0a0a] text-[#94a3b8]',
                 ]}
               >
                 {i === 0 ? '>' : String(i + 1).padStart(2, '0')}
               </div>
             </div>
 
-            <!-- Content: terminal window card -->
-            <div class="terminal-window flex-1 transition-all hover:shadow-[0_0_20px_rgba(0,255,65,0.1)]">
-              <!-- Terminal header bar -->
+            <!-- Terminal window card -->
+            <div class="terminal-window flex-1 transition-all hover:border-[#276749]">
               <div class="terminal-header">
                 <div class="flex gap-1.5">
-                  <div class:list={['terminal-dot', i === 0 ? 'active' : '']}></div>
-                  <div class="terminal-dot"></div>
-                  <div class="terminal-dot"></div>
+                  <span class="terminal-dot dot-red"></span>
+                  <span class="terminal-dot dot-yellow"></span>
+                  <span class="terminal-dot dot-green"></span>
                 </div>
-                <span class="ml-2 flex-1 text-xs font-mono text-text-muted truncate">
-                  ~/experience/{exp.data.company.toLowerCase().replace(/\s+/g, '-')}
+                <span class="ml-2 flex-1 truncate text-xs font-mono text-[#94a3b8]">
+                  ~/experience/{exp.data.company.toLowerCase().replace(/[\s/]+/g, '-')}
                 </span>
                 {exp.data.current && (
-                  <span class="border border-brand-500 px-2 py-0.5 text-xs font-mono text-brand-500 shadow-[0_0_5px_rgba(0,255,65,0.3)]">
+                  <span class="border border-[#4ade80] px-2 py-0.5 text-xs font-mono text-[#4ade80]">
                     {translate('experience.current')}
                   </span>
                 )}
               </div>
 
-              <!-- Card body -->
               <div class="p-5 font-mono">
-                <div class="mb-1 text-xs text-text-muted">
-                  <span class="text-brand-500">$</span> cat job.md
-                </div>
-                <h3 class="mb-1 text-base font-bold text-brand-400"># {exp.data.role}</h3>
-                <p class="mb-1 text-sm font-semibold text-accent-500">@ {exp.data.company}</p>
+                <!-- Role & company -->
+                <h3 class="mb-0.5 text-base font-bold text-[#f1f5f9]">{exp.data.role}</h3>
+                <p class="mb-1 text-sm font-semibold text-[#4ade80]">@ {exp.data.company}</p>
 
                 {exp.data.location && (
-                  <p class="mb-2 text-xs text-text-muted">// {exp.data.location}</p>
+                  <p class="mb-2 text-xs text-[#94a3b8]">// {exp.data.location}</p>
                 )}
 
-                <p class="mb-4 text-xs text-text-muted border-l-2 border-brand-800 pl-3">
+                <!-- Date range -->
+                <p class="mb-5 border-l-2 border-[#1e2d1e] pl-3 text-xs text-[#94a3b8]">
                   {formatDate(exp.data.startDate, locale)} —{' '}
-                  {exp.data.endDate ? formatDate(exp.data.endDate, locale) : translate('experience.present')}
+                  {exp.data.endDate
+                    ? formatDate(exp.data.endDate, locale)
+                    : translate('experience.present')}
                 </p>
 
+                <!-- Highlights -->
                 {exp.data.highlights.length > 0 && (
-                  <ul class="space-y-2">
+                  <ul class="space-y-2.5">
                     {exp.data.highlights.map((h) => (
-                      <li class="flex items-start gap-2 text-sm text-text-muted">
-                        <span class="mt-0.5 flex-shrink-0 text-brand-500">{'>'}</span>
+                      <li class="flex items-start gap-2.5 text-sm text-[#cbd5e1]">
+                        <span class="mt-0.5 flex-shrink-0 text-[#4ade80]">›</span>
                         <span>{h}</span>
                       </li>
                     ))}
@@ -103,9 +100,17 @@ const experiences = await getLocalized('experience', locale);
         ))}
       </div>
     ) : (
-      <p class="font-mono text-sm text-text-muted">
-        <span class="text-brand-500">></span> No output. No experience entries for this language yet.
+      <p class="font-mono text-sm text-[#94a3b8]">
+        <span class="text-[#4ade80]">›</span> No output. No experience entries for this language yet.
       </p>
     )}
+
   </div>
 </section>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>

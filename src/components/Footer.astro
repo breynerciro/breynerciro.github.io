@@ -12,61 +12,71 @@ const translate = t(locale);
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-brand-800 bg-bg-alt font-mono">
+<footer class="border-t border-[#1e2d1e] bg-[#0d0d0d] font-mono">
   <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
-    <!-- Top row: prompt + social links -->
-    <div class="mb-4 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-      <!-- Terminal prompt decoration -->
-      <p class="text-sm text-text-muted">
-        <span class="text-brand-500">breynerciro@portfolio</span><span class="text-text-muted">:</span><span class="text-accent-500">~</span><span class="text-text-muted">$</span>
-        <span class="ml-2 text-brand-400">exit 0</span>
-        <span class="ml-1 animate-pulse text-brand-500">_</span>
+
+    <!-- Top row -->
+    <div class="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <!-- Prompt -->
+      <p class="text-sm text-[#94a3b8]">
+        <span class="text-[#4ade80]">breynerciro@portfolio</span><!-- 
+     --><span class="text-[#94a3b8]">:~$</span>
+        <span class="ml-2 text-[#e2e8f0]">exit 0</span>
+        <span class="ml-1 animate-[blink_1.2s_step-end_infinite] text-[#4ade80]">▋</span>
       </p>
 
       <!-- Social links -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
         <a
           href="https://github.com/breynerciro"
           target="_blank"
           rel="noopener noreferrer"
-          class="border border-brand-800 px-3 py-1 text-xs text-text-muted transition-all
-                 hover:border-brand-500 hover:text-brand-400 hover:shadow-[0_0_8px_rgba(0,255,65,0.2)]"
+          class="border border-[#1e2d1e] px-3 py-1.5 text-xs text-[#94a3b8] transition-all
+                 hover:border-[#4ade80] hover:text-[#e2e8f0]"
           aria-label="GitHub"
         >
-          [gh]
+          GitHub
         </a>
         <a
           href="https://linkedin.com/in/breyner-ciro"
           target="_blank"
           rel="noopener noreferrer"
-          class="border border-brand-800 px-3 py-1 text-xs text-text-muted transition-all
-                 hover:border-brand-500 hover:text-brand-400 hover:shadow-[0_0_8px_rgba(0,255,65,0.2)]"
+          class="border border-[#1e2d1e] px-3 py-1.5 text-xs text-[#94a3b8] transition-all
+                 hover:border-[#4ade80] hover:text-[#e2e8f0]"
           aria-label="LinkedIn"
         >
-          [in]
+          LinkedIn
         </a>
         <a
           href="mailto:breynerismael@gmail.com"
-          class="border border-brand-800 px-3 py-1 text-xs text-text-muted transition-all
-                 hover:border-brand-500 hover:text-brand-400 hover:shadow-[0_0_8px_rgba(0,255,65,0.2)]"
+          class="border border-[#1e2d1e] px-3 py-1.5 text-xs text-[#94a3b8] transition-all
+                 hover:border-[#4ade80] hover:text-[#e2e8f0]"
           aria-label="Email"
         >
-          [@]
+          Email
         </a>
       </div>
     </div>
 
-    <!-- Bottom row: copyright + built with -->
-    <div class="border-t border-brand-900 pt-4 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
-      <p class="text-xs text-text-muted">
-        <span class="text-brand-700">// </span>&copy; {currentYear} Breyner Ciro. {translate('footer.rights')}
+    <!-- Bottom row -->
+    <div class="flex flex-col gap-1 border-t border-[#1e2d1e] pt-5 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-xs text-[#94a3b8]">
+        &copy; {currentYear} Breyner Ciro — {translate('footer.rights')}
       </p>
-      <p class="text-xs text-text-muted">
-        <span class="text-brand-700">// </span>{translate('footer.built')}
-        <span class="ml-1 font-medium text-brand-500">Astro</span>
-        <span class="ml-1 text-brand-700">+</span>
-        <span class="ml-1 font-medium text-brand-500">Tailwind v4</span>
+      <p class="text-xs text-[#94a3b8]">
+        {translate('footer.built')}
+        <span class="ml-1 text-[#4ade80]">Astro</span>
+        <span class="mx-1 text-[#1e2d1e]">+</span>
+        <span class="text-[#4ade80]">Tailwind v4</span>
       </p>
     </div>
+
   </div>
 </footer>
+
+<style>
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>

@@ -6,54 +6,58 @@
 
 /* ── Design tokens (Terminal Theme) ── */
 @theme {
-  /* Neon Green Brand Colors */
-  --color-brand-50: #e6ffed;
-  --color-brand-100: #b3ffc8;
-  --color-brand-200: #80ffa4;
-  --color-brand-300: #4dff7f;
-  --color-brand-400: #1aff5b;
-  --color-brand-500: #00ff41; /* Primary Terminal Green */
-  --color-brand-600: #00cc34;
-  --color-brand-700: #009927;
-  --color-brand-800: #00661a;
-  --color-brand-900: #00330d;
-  --color-brand-950: #001a06;
+  /* Brand Green — used ONLY for accents, prompts, highlights */
+  --color-brand-50:  #f0fff4;
+  --color-brand-100: #c6f6d5;
+  --color-brand-200: #9ae6b4;
+  --color-brand-300: #68d391;
+  --color-brand-400: #48bb78;
+  --color-brand-500: #38a169; /* Primary accent — muted professional green */
+  --color-brand-600: #2f855a;
+  --color-brand-700: #276749;
+  --color-brand-800: #1c4532;
+  --color-brand-900: #0f2e1f;
+  --color-brand-950: #071a11;
 
-  /* Terminal Surface Colors (Deep Black) */
-  --color-surface-50: #1e1e1e;
-  --color-surface-100: #1a1a1a;
-  --color-surface-200: #141414;
-  --color-surface-300: #101010;
-  --color-surface-800: #0a0a0a;
-  --color-surface-850: #080808;
-  --color-surface-900: #050505;
-  --color-surface-950: #000000;
+  /* Terminal Neon — only for glow effects and key highlights */
+  --color-neon: #4ade80;       /* bright green, used sparingly */
+  --color-neon-dim: #16a34a;   /* dimmer neon for borders */
 
-  /* Accent (Terminal Cyan/Amber for highlights) */
-  --color-accent-400: #00ffff;
-  --color-accent-500: #08f7fe;
-  --color-accent-600: #09c4c9;
+  /* Surface Colors — near-black, not pure black */
+  --color-surface-50:  #2d2d2d;
+  --color-surface-100: #252525;
+  --color-surface-200: #1e1e1e;
+  --color-surface-300: #1a1a1a;
+  --color-surface-800: #141414;
+  --color-surface-850: #111111;
+  --color-surface-900: #0d0d0d;
+  --color-surface-950: #0a0a0a;
 
-  /* Semantic tokens */
-  --color-bg: var(--color-surface-950);
-  --color-bg-alt: var(--color-surface-900);
-  --color-surface: var(--color-surface-850);
-  --color-text: var(--color-brand-500); /* Green text by default */
-  --color-text-muted: #80ffa4; /* Lighter green */
-  --color-border: var(--color-brand-800);
+  /* Accent — cyan used very sparingly */
+  --color-accent-400: #67e8f9;
+  --color-accent-500: #22d3ee;
+  --color-accent-600: #0891b2;
+
+  /* Semantic tokens — THE KEY CHANGE */
+  --color-bg:         var(--color-surface-950);  /* near-black, not #000 */
+  --color-bg-alt:     var(--color-surface-900);
+  --color-surface:    var(--color-surface-850);
+  --color-text:       #e2e8f0;  /* slate-200 — white/gray for body text */
+  --color-text-muted: #94a3b8;  /* slate-400 — neutral gray for secondary text */
+  --color-border:     #1e2d1e;  /* very subtle green-tinted border */
 
   /* Font families - ALL MONOSPACE */
-  --font-sans: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+  --font-sans: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'SF Mono', monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'SF Mono', monospace;
 
   /* Spacing scale */
   --spacing-section: 6rem;
 
   /* Border radius - Sharper for terminal look */
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 2px;
-  --radius-xl: 4px;
+  --radius-sm:  0px;
+  --radius-md:  0px;
+  --radius-lg:  2px;
+  --radius-xl:  4px;
   --radius-2xl: 4px;
 }
 
@@ -67,121 +71,134 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
-  /* Optional CRT Scanlines Background */
-  background-image: linear-gradient(rgba(0, 255, 65, 0.03) 50%, transparent 50%);
-  background-size: 100% 4px;
+  /* Very subtle grid pattern — professional, not distracting */
+  background-image:
+    linear-gradient(rgba(74, 222, 128, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 /* ── Selection ── */
 ::selection {
-  background-color: var(--color-brand-500);
-  color: #000;
+  background-color: var(--color-brand-800);
+  color: #e2e8f0;
 }
 
-/* ── Scrollbar (Terminal Style) ── */
-::-webkit-scrollbar {
-  width: 0.75rem;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
-  border-left: 1px solid var(--color-border);
-}
-
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--color-brand-700);
-  border: 1px solid var(--color-brand-500);
+  background-color: var(--color-surface-200);
+  border-radius: 0;
 }
+::-webkit-scrollbar-thumb:hover { background-color: var(--color-brand-700); }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-brand-500);
-}
-
-/* ── Terminal Specific Utilities ── */
+/* ── Terminal Window component ── */
 .terminal-window {
-  border: 1px solid var(--color-brand-700);
+  border: 1px solid #1e2d1e;
   background-color: var(--color-bg-alt);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
   position: relative;
+  /* Subtle inner shadow to give depth */
+  box-shadow: inset 0 1px 0 rgba(74, 222, 128, 0.04);
+}
+
+.terminal-window:hover {
+  border-color: var(--color-brand-700);
 }
 
 .terminal-header {
-  border-bottom: 1px solid var(--color-brand-700);
+  border-bottom: 1px solid #1e2d1e;
   background-color: var(--color-surface-900);
-  padding: 0.25rem 0.75rem;
+  padding: 0.4rem 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
+/* macOS traffic light dots — correct colors */
 .terminal-dot {
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
-  background-color: var(--color-brand-800);
+}
+.terminal-dot.dot-red    { background-color: #ff5f57; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.3); }
+.terminal-dot.dot-yellow { background-color: #febc2e; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.3); }
+.terminal-dot.dot-green  { background-color: #28c840; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.3); }
+
+/* ── Prompt prefix utility ── */
+.prompt-line::before {
+  content: '$ ';
+  color: var(--color-neon);
+  font-family: var(--font-mono);
 }
 
-.terminal-dot.active {
-  background-color: var(--color-brand-500);
-  box-shadow: 0 0 5px var(--color-brand-500);
+/* ── Section heading style ── */
+.section-cmd {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #e2e8f0;
+}
+.section-cmd .cmd-prompt { color: var(--color-neon); }
+.section-cmd .cmd-cursor {
+  color: var(--color-neon);
+  animation: blink 1.2s step-end infinite;
 }
 
-/* ── Prose styles for blog content (Terminal flavor) ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Prose styles for blog (Terminal flavor) ── */
 .prose h1,
 .prose h2,
 .prose h3 {
-  color: #fff;
+  color: #f1f5f9;
   font-weight: 700;
 }
 
 .prose h2::before {
-  content: "> ";
-  color: var(--color-brand-500);
+  content: '> ';
+  color: var(--color-neon);
 }
 
-.prose p {
-  color: #ddd;
-}
+.prose p    { color: #cbd5e1; }
+.prose ul,
+.prose ol   { color: #cbd5e1; }
 
 .prose a {
   color: var(--color-accent-500);
   text-decoration: underline;
 }
-
 .prose a:hover {
   color: var(--color-accent-400);
-  background-color: rgba(8, 247, 254, 0.1);
 }
 
 .prose code {
-  color: var(--color-brand-400);
-  border: 1px solid var(--color-brand-800);
+  color: var(--color-neon);
+  border: 1px solid #1e2d1e;
   padding: 0.15em 0.4em;
   background: transparent;
+  font-size: 0.875em;
 }
 
 .prose pre {
   background-color: var(--color-bg-alt) !important;
-  border: 1px solid var(--color-brand-800);
-  color: #eee;
+  border: 1px solid #1e2d1e;
+  color: #e2e8f0;
   padding: 1rem;
 }
 
 .prose blockquote {
-  border-left-color: var(--color-brand-500);
-  color: #aaa;
+  border-left: 2px solid var(--color-neon-dim);
+  color: #94a3b8;
 }
 
 .prose img {
-  border: 1px solid var(--color-brand-800);
-  filter: grayscale(20%) contrast(120%);
-}
-
-.prose ul, .prose ol {
-  color: #ddd;
+  border: 1px solid #1e2d1e;
 }
 
 .prose hr {
-  border-color: var(--color-brand-800);
+  border-color: #1e2d1e;
   border-style: dashed;
 }
