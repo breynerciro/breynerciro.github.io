@@ -16,11 +16,15 @@ const projects = await getLocalized('projects', locale);
 <section id="projects" class="scroll-mt-20 py-20">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <!-- Section header -->
-    <div class="mb-12">
-      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-        {translate('projects.title')}
-        <span class="ml-2 text-brand-500">.</span>
+    <div class="mb-12 font-mono">
+      <p class="mb-2 text-xs text-text-muted">
+        <span class="text-brand-500">breynerciro@portfolio</span><span class="text-text-muted">:</span><span class="text-accent-500">~/projects</span><span class="text-text-muted">$</span>
+      </p>
+      <h2 class="text-3xl font-bold tracking-tight text-text sm:text-4xl">
+        <span class="text-brand-500">></span> ./list_projects.sh
+        <span class="animate-pulse text-brand-500">_</span>
       </h2>
+      <p class="mt-2 text-sm text-text-muted">// {translate('projects.title')}</p>
     </div>
 
     {projects.length > 0 ? (
@@ -30,7 +34,9 @@ const projects = await getLocalized('projects', locale);
         ))}
       </div>
     ) : (
-      <p class="text-text-muted">No projects for this language yet.</p>
+      <p class="font-mono text-sm text-text-muted">
+        <span class="text-brand-500">></span> No output. No projects for this language yet.
+      </p>
     )}
   </div>
 </section>

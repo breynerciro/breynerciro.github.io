@@ -78,39 +78,45 @@ const skillGroups = [
 <section id="skills" class="scroll-mt-20 py-20">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <!-- Section header -->
-    <div class="mb-12">
-      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-        {translate('skills.title')}
-        <span class="ml-2 text-brand-500">.</span>
+    <div class="mb-12 font-mono">
+      <h2 class="text-3xl font-bold tracking-tight text-text sm:text-4xl">
+        <span class="text-brand-500">></span> ./run_skills.sh
+        <span class="animate-pulse text-brand-500">_</span>
       </h2>
     </div>
 
     <div class="grid gap-8 md:grid-cols-2">
       {skillGroups.map((group) => (
-        <div
-          class="rounded-2xl border border-border bg-bg-alt p-6
-                 dark:border-surface-800"
-        >
-          <h3 class="mb-5 text-lg font-bold text-text">
-            {translate(group.titleKey)}
-          </h3>
-          <div class="space-y-4">
-            {group.skills.map((skill) => (
-              <div>
-                <div class="mb-1.5 flex items-center justify-between">
-                  <span class="text-sm font-medium text-text">{skill.name}</span>
-                  <span class="text-xs font-medium text-text-muted">{skill.level}%</span>
-                </div>
-                <div class="h-2 overflow-hidden rounded-full bg-surface-200 dark:bg-surface-800">
-                  <div
-                    class="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-400
-                           transition-all duration-1000"
-                    style={`width: ${skill.level}%`}
-                  >
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <div class="flex gap-1.5">
+              <div class="terminal-dot active"></div>
+              <div class="terminal-dot"></div>
+              <div class="terminal-dot"></div>
+            </div>
+            <span class="ml-2 text-xs font-mono text-text-muted">~/skills/{translate(group.titleKey).toLowerCase().replace(/ & | /g, '_')}</span>
+          </div>
+          <div class="p-6">
+            <h3 class="mb-5 text-lg font-mono font-bold text-brand-400">
+              $ cat {translate(group.titleKey).toLowerCase().replace(/ & | /g, '_')}.txt
+            </h3>
+            <div class="space-y-4">
+              {group.skills.map((skill) => (
+                <div class="font-mono">
+                  <div class="mb-1.5 flex items-center justify-between">
+                    <span class="text-sm font-medium text-text">{skill.name}</span>
+                    <span class="text-xs font-medium text-brand-500">[{skill.level}%]</span>
+                  </div>
+                  <div class="h-2 overflow-hidden bg-surface-900 border border-brand-800">
+                    <div
+                      class="h-full bg-brand-500 shadow-[0_0_10px_rgba(0,255,65,0.5)] transition-all duration-1000"
+                      style={`width: ${skill.level}%`}
+                    >
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       ))}

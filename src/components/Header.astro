@@ -1,7 +1,6 @@
 ---
 import { type Locale } from '../i18n/locales';
 import { t, localizedHref } from '../i18n/utils';
-import ThemeToggle from './ThemeToggle.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
@@ -25,16 +24,16 @@ const homePath = localizedHref(locale, '/');
 ---
 
 <header
-  class="sticky top-0 z-50 border-b border-border/50 bg-bg/80 backdrop-blur-lg
-         supports-[backdrop-filter]:bg-bg/60 dark:border-surface-800/50"
+  class="sticky top-0 z-50 border-b border-brand-800/50 bg-surface-900/90 backdrop-blur-lg
+         supports-[backdrop-filter]:bg-surface-950/80"
 >
   <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
     <!-- Logo -->
     <a
       href={homePath}
-      class="text-lg font-bold tracking-tight text-text transition-colors hover:text-brand-500"
+      class="text-sm md:text-base font-mono font-bold tracking-tight text-brand-500 transition-colors hover:text-brand-400"
     >
-      BC<span class="text-brand-500">.</span>
+      breyner@ciro<span class="text-text-muted">:</span><span class="text-accent-500">~</span><span class="text-text-muted">$</span>
     </a>
 
     <!-- Desktop nav -->
@@ -43,8 +42,8 @@ const homePath = localizedHref(locale, '/');
         <li>
           <a
             href={link.href}
-            class="rounded-lg px-3 py-2 text-sm font-medium text-text-muted transition-colors
-                   hover:bg-surface-200 hover:text-text dark:hover:bg-surface-800"
+            class="rounded-sm px-3 py-2 text-sm font-mono text-text transition-colors
+                   hover:bg-brand-900 hover:text-brand-400"
           >
             {translate(link.key)}
           </a>
@@ -55,7 +54,6 @@ const homePath = localizedHref(locale, '/');
     <!-- Actions -->
     <div class="flex items-center gap-2">
       <LanguageSwitcher currentLocale={locale} />
-      <ThemeToggle />
 
       <!-- Mobile menu button -->
       <button
@@ -76,18 +74,17 @@ const homePath = localizedHref(locale, '/');
   <!-- Mobile menu -->
   <div
     id="mobile-menu"
-    class="hidden border-t border-border bg-bg px-4 pb-4 pt-2 dark:border-surface-800 md:hidden"
+    class="hidden border-t border-brand-800 bg-surface-900 px-4 pb-4 pt-2 md:hidden"
   >
     <ul class="space-y-1">
       {navLinks.map((link) => (
         <li>
           <a
             href={link.href}
-            class="block rounded-lg px-3 py-2 text-sm font-medium text-text-muted
-                   transition-colors hover:bg-surface-200 hover:text-text
-                   dark:hover:bg-surface-800"
+            class="block rounded-sm px-3 py-2 text-sm font-mono text-text
+                   transition-colors hover:bg-brand-900 hover:text-brand-400"
           >
-            {translate(link.key)}
+            > {translate(link.key)}
           </a>
         </li>
       ))}

@@ -15,87 +15,105 @@ const certs = await getLocalized('certifications', locale);
 <section id="education" class="scroll-mt-20 py-20">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <!-- Section header -->
-    <div class="mb-12">
-      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-        {translate('education.title')}
-        <span class="ml-2 text-brand-500">.</span>
+    <div class="mb-12 font-mono">
+      <p class="mb-2 text-xs text-text-muted">
+        <span class="text-brand-500">breynerciro@portfolio</span><span class="text-text-muted">:</span><span class="text-accent-500">~/education</span><span class="text-text-muted">$</span>
+      </p>
+      <h2 class="text-3xl font-bold tracking-tight text-text sm:text-4xl">
+        <span class="text-brand-500">></span> ./show_education.sh
+        <span class="animate-pulse text-brand-500">_</span>
       </h2>
+      <p class="mt-2 text-sm text-text-muted">// {translate('education.title')}</p>
     </div>
 
     <div class="grid gap-8 lg:grid-cols-2">
       <!-- Degree -->
-      <div
-        class="rounded-2xl border border-border bg-bg-alt p-6
-               dark:border-surface-800"
-      >
-        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100
-                    dark:bg-brand-900/30">
-          <svg
-            class="h-6 w-6 text-brand-600 dark:text-brand-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-          </svg>
-        </div>
-
-        <h3 class="mb-2 text-lg font-bold text-text">{translate('education.degree')}</h3>
-        
-        <div class="mb-6 mt-4">
-          <p class="mb-1 text-sm font-semibold text-brand-500">
-            Ingeniería de Sistemas y Computación
-          </p>
-          <p class="mb-2 text-sm text-text-muted">Universidad Nacional de Colombia</p>
-          <div class="flex items-center gap-2">
-            <span class="text-xs text-text-muted">2018 — 2026</span>
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="flex gap-1.5">
+            <div class="terminal-dot active"></div>
+            <div class="terminal-dot"></div>
+            <div class="terminal-dot"></div>
           </div>
+          <span class="ml-2 text-xs font-mono text-text-muted">~/education/degree.md</span>
         </div>
-
-        <div>
-          <p class="mb-1 text-sm font-semibold text-brand-500">
-            Técnico Laboral en Sistemas Informáticos
+        <div class="p-6 font-mono">
+          <p class="mb-4 text-xs text-text-muted">
+            <span class="text-brand-500">$</span> cat degree.md
           </p>
-          <p class="mb-2 text-sm text-text-muted">POLINTEC</p>
-          <div class="flex items-center gap-2">
-            <span class="text-xs text-text-muted">2016</span>
+          <h3 class="mb-5 text-base font-bold text-brand-400"># {translate('education.degree')}</h3>
+
+          <div class="mb-5 border-l-2 border-brand-800 pl-4">
+            <p class="mb-1 text-sm font-semibold text-brand-500">
+              Ingeniería de Sistemas y Computación
+            </p>
+            <p class="mb-1 text-xs text-text-muted">Universidad Nacional de Colombia</p>
+            <p class="text-xs text-text-muted">
+              <span class="text-brand-700">##</span> 2018 — 2026
+            </p>
+          </div>
+
+          <div class="border-l-2 border-brand-800 pl-4">
+            <p class="mb-1 text-sm font-semibold text-brand-500">
+              Técnico Laboral en Sistemas Informáticos
+            </p>
+            <p class="mb-1 text-xs text-text-muted">POLINTEC</p>
+            <p class="text-xs text-text-muted">
+              <span class="text-brand-700">##</span> 2016
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Certifications -->
       <div class="space-y-4">
-        <h3 class="text-lg font-bold text-text">{translate('education.certs')}</h3>
+        <div class="font-mono mb-4">
+          <p class="text-xs text-text-muted">
+            <span class="text-brand-500">$</span> ls ./certifications/
+          </p>
+          <h3 class="mt-1 text-base font-bold text-brand-400"># {translate('education.certs')}</h3>
+        </div>
 
         {certs.length > 0 ? (
           certs.map((cert) => (
-            <div
-              class="rounded-xl border border-border bg-bg-alt p-4
-                     transition-colors hover:border-brand-300
-                     dark:border-surface-800 dark:hover:border-brand-700"
-            >
-              <p class="mb-1 text-sm font-semibold text-text">{cert.data.title}</p>
-              <p class="text-xs text-text-muted">{cert.data.issuer}</p>
-              <div class="mt-2 flex items-center gap-2">
-                <span class="text-xs text-text-muted">
-                  {formatDate(cert.data.issuedDate, locale)}
+            <div class="terminal-window transition-all hover:shadow-[0_0_15px_rgba(0,255,65,0.1)]">
+              <div class="terminal-header">
+                <div class="flex gap-1.5">
+                  <div class="terminal-dot active"></div>
+                  <div class="terminal-dot"></div>
+                  <div class="terminal-dot"></div>
+                </div>
+                <span class="ml-2 text-xs font-mono text-text-muted truncate">
+                  ~/certs/{cert.data.title.toLowerCase().replace(/\s+/g, '-')}.cert
                 </span>
-                {cert.data.credentialUrl && (
-                  <a
-                    href={cert.data.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-xs font-medium text-brand-500 hover:underline"
-                  >
-                    Ver credencial →
-                  </a>
-                )}
+              </div>
+              <div class="p-4 font-mono">
+                <p class="mb-0.5 text-sm font-semibold text-brand-400">{cert.data.title}</p>
+                <p class="text-xs text-text-muted">
+                  <span class="text-brand-700">@</span> {cert.data.issuer}
+                </p>
+                <div class="mt-2 flex items-center gap-3">
+                  <span class="text-xs text-text-muted">
+                    <span class="text-brand-700">//</span> {formatDate(cert.data.issuedDate, locale)}
+                  </span>
+                  {cert.data.credentialUrl && (
+                    <a
+                      href={cert.data.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-xs font-medium text-accent-500 hover:text-accent-400 transition-colors"
+                    >
+                      → ver credencial
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           ))
         ) : (
-          <p class="text-sm text-text-muted">No certifications for this language yet.</p>
+          <p class="font-mono text-sm text-text-muted">
+            <span class="text-brand-500">></span> No output. No certifications for this language yet.
+          </p>
         )}
       </div>
     </div>
