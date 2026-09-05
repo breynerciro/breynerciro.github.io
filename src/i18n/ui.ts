@@ -28,7 +28,8 @@ export const ui = {
 
     // Skills
     'skills.title': 'Habilidades',
-    'skills.backend': 'Backend & Base de Datos',
+    'skills.backend': 'Backend',
+    'skills.databases': 'Bases de Datos',
     'skills.frontend': 'Frontend & UI',
     'skills.devops': 'DevOps & Cloud',
     'skills.methods': 'Metodologías',
@@ -106,7 +107,8 @@ export const ui = {
 
     // Skills
     'skills.title': 'Skills',
-    'skills.backend': 'Backend & Databases',
+    'skills.backend': 'Backend',
+    'skills.databases': 'Databases',
     'skills.frontend': 'Frontend & UI',
     'skills.devops': 'DevOps & Cloud',
     'skills.methods': 'Methodologies',
@@ -184,7 +186,8 @@ export const ui = {
 
     // Skills
     'skills.title': 'Habilidades',
-    'skills.backend': 'Backend & Banco de Dados',
+    'skills.backend': 'Backend',
+    'skills.databases': 'Bancos de Dados',
     'skills.frontend': 'Frontend & UI',
     'skills.devops': 'DevOps & Cloud',
     'skills.methods': 'Metodologias',
