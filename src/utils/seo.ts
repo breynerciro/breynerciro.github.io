@@ -1,6 +1,5 @@
 import type { Locale } from '../i18n/locales';
 import { defaultLocale, locales } from '../i18n/locales';
-import { siteBase } from '../i18n/utils';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface SEOMeta {
@@ -34,7 +33,7 @@ export function buildSEO(meta: SEOMeta, site: string) {
     canonical,
     hreflangs,
     xDefault,
-    ogImage: ogImage ?? `${siteUrl}${siteBase}/og-image.png`,
+    ogImage: ogImage ?? `${siteUrl}/og-image.png`,
     ogUrl: canonical,
   };
 }

@@ -1,7 +1,6 @@
 ---
 import type { Locale } from "../i18n/locales";
 import { defaultLocale } from "../i18n/locales";
-import { siteBase } from "../i18n/utils";
 import { buildSEO } from "../utils/seo";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -49,7 +48,7 @@ const seo = buildSEO({ title, description, canonicalPath, ogImage, locale }, sit
         name: "Breyner Ismael Ciro Otero",
         alternateName: "Breyner Ciro",
         jobTitle: "FullStack Software Engineer",
-        url: `${siteUrl}${siteBase}/`,
+        url: `${siteUrl}/`,
         sameAs: [
           "https://github.com/breynerciro",
           "https://www.linkedin.com/in/breyner-ciro-38011330b/",
@@ -106,9 +105,9 @@ const seo = buildSEO({ title, description, canonicalPath, ogImage, locale }, sit
     <link rel="alternate" hreflang="x-default" href={seo.xDefault} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href={`${siteBase}/favicon.svg`} />
-    <link rel="icon" type="image/x-icon" href={`${siteBase}/favicon.ico`} sizes="32x32" />
-    <link rel="apple-touch-icon" href={`${siteBase}/apple-touch-icon.png`} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Preconnect fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
