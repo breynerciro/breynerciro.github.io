@@ -1,6 +1,7 @@
 ---
 import type { Locale } from "../i18n/locales";
 import { defaultLocale } from "../i18n/locales";
+import { siteBase } from "../i18n/utils";
 import { buildSEO } from "../utils/seo";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -22,10 +23,8 @@ const {
   canonicalPath = "/",
 } = Astro.props;
 
-const seo = buildSEO(
-  { title, description, canonicalPath, ogImage, locale },
-  Astro.site?.toString() ?? "https://breynerciro.github.io",
-);
+const siteUrl = (Astro.site?.toString() ?? "https://breynerciro.github.io").replace(/\/+$/, "");
+const seo = buildSEO({ title, description, canonicalPath, ogImage, locale }, siteUrl);
 ---
 
 <!doctype html>
@@ -50,7 +49,7 @@ const seo = buildSEO(
         name: "Breyner Ismael Ciro Otero",
         alternateName: "Breyner Ciro",
         jobTitle: "FullStack Software Engineer",
-        url: "https://breynerciro.github.io",
+        url: `${siteUrl}${siteBase}/`,
         sameAs: [
           "https://github.com/breynerciro",
           "https://www.linkedin.com/in/breyner-ciro-38011330b/",
@@ -107,7 +106,7 @@ const seo = buildSEO(
     <link rel="alternate" hreflang="x-default" href={seo.xDefault} />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/breynerciro/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${siteBase}/favicon.svg`} />
 
     <!-- Preconnect fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

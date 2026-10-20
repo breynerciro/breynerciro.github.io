@@ -1,12 +1,23 @@
 import { defaultLocale, locales, type Locale } from './locales';
 import { ui, type Translations } from './ui';
 
+/** Base path del sitio sin slash final ('' cuando no hay base). */
+export const siteBase = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
+/** Quita la base del sitio de un pathname. "/breynerciro/en/x/" → "/en/x/" */
+function stripSiteBase(pathname: string): string {
+  if (siteBase && pathname.startsWith(siteBase)) {
+    return pathname.slice(siteBase.length) || '/';
+  }
+  return pathname;
+}
+
 /**
  * Get locale from a URL — works outside Astro components (no Astro.currentLocale).
  * Inside components, prefer Astro.currentLocale.
  */
 export function getLocaleFromUrl(url: URL): Locale {
-  const segment = url.pathname.split('/')[1];
+  const segment = stripSiteBase(url.pathname).split('/')[1];
   return (locales as readonly string[]).includes(segment)
     ? (segment as Locale)
     : defaultLocale;
@@ -29,17 +40,18 @@ export function t(locale: Locale): (key: string) => string {
  */
 export function localizedHref(locale: Locale, path: string): string {
   const p = path.startsWith('/') ? path : `/${path}`;
-  return locale === defaultLocale ? p : `/${locale}${p}`;
+  const localized = locale === defaultLocale ? p : `/${locale}${p}`;
+  return `${siteBase}${localized}`;
 }
 
 /**
- * Strip locale prefix from a pathname.
- * "/en/blog/post/" → "/blog/post/"
+ * Strip site base and locale prefix from a pathname.
+ * "/breynerciro/en/blog/post/" → "/blog/post/"
  * "/pt/" → "/"
  * "/" → "/"
  */
 export function stripLocalePrefix(pathname: string): string {
-  const segments = pathname.split('/');
+  const segments = stripSiteBase(pathname).split('/');
   if (segments.length > 1 && (locales as readonly string[]).includes(segments[1])) {
     segments.splice(1, 1);
   }

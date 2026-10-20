@@ -7,7 +7,6 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://breynerciro.github.io',
-  base: '/breynerciro',
   output: 'static',
   trailingSlash: 'always',
   i18n: {

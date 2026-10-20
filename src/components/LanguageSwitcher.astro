@@ -1,6 +1,7 @@
 ---
 import { locales, localeLabels, localeFlags, type Locale } from '../i18n/locales';
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { stripLocalePrefix } from '../i18n/utils';
 
 interface Props {
   currentLocale: Locale;
@@ -8,9 +9,8 @@ interface Props {
 
 const { currentLocale } = Astro.props;
 
-// Strip locale prefix from current path to get the root path
-const pathname = Astro.url.pathname;
-const basePath = pathname.replace(/^\/(en|pt)(?=\/|$)/, '') || '/';
+// Current path without site base and locale prefix (to keep the same page)
+const basePath = stripLocalePrefix(Astro.url.pathname);
 ---
 
 <div class="relative group">

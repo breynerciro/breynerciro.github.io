@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { t, getLocaleFromUrl } from '../i18n/utils';
+import { t, getLocaleFromUrl, localizedHref, siteBase } from '../i18n/utils';
 
 const locale = getLocaleFromUrl(Astro.url);
 const translate = t(locale);
@@ -14,7 +14,7 @@ const messages = {
 ---
 
 <BaseLayout locale={locale} title="404 — Breyner Ciro" canonicalPath="/">
-  <section class="flex min-h-[70vh] items-center justify-center py-20">
+  <section class="flex min-h-[70vh] items-center justify-center py-20" data-site-base={siteBase}>
     <div class="mx-auto max-w-xl px-4 text-center sm:px-6">
       <p class="mb-4 font-mono text-8xl font-bold text-brand-500">404</p>
       <h1 id="not-found-title" class="mb-4 text-3xl font-bold tracking-tight text-text">
@@ -25,7 +25,7 @@ const messages = {
       </p>
       <a
         id="not-found-home"
-        href="/"
+        href={localizedHref(locale, '/')}
         class="inline-flex items-center justify-center rounded-lg bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
       >
         {messages.es.home}
@@ -37,7 +37,11 @@ const messages = {
 <script is:inline>
   (function () {
     // Detect the locale from the current pathname and swap the 404 copy.
+    var el = document.querySelector('[data-site-base]');
+    var base = (el ? el.getAttribute('data-site-base') : '') || '';
+    base = base.replace(/\/+$/, '');
     var path = window.location.pathname;
+    if (base && path.indexOf(base) === 0) path = path.slice(base.length) || '/';
     var locale = path.startsWith('/en/') || path === '/en' ? 'en' : path.startsWith('/pt/') || path === '/pt' ? 'pt' : 'es';
     var map = {
       es: {
