@@ -2,6 +2,7 @@
 import { type Locale } from '../../i18n/locales';
 import { t } from '../../i18n/utils';
 import Section from '../Section.astro';
+import { skillGroups } from '../../utils/profile';
 
 interface Props {
   locale: Locale;
@@ -10,26 +11,12 @@ interface Props {
 const { locale } = Astro.props;
 const translate = t(locale);
 
-const l10n = {
-  es: { ai: ['Agentes con herramientas (MCP)', 'Salidas estructuradas con Zod', 'Extracción de datos de documentos'], langs: ['Español (nativo)', 'Inglés (B1)', 'Portugués (B1)'], obs: 'Observabilidad', multi: 'Arquitectura multitenant' },
-  en: { ai: ['Tool-using agents (MCP)', 'Structured outputs with Zod', 'Document data extraction'], langs: ['Spanish (native)', 'English (B1)', 'Portuguese (B1)'], obs: 'Observability', multi: 'Multi-tenant architecture' },
-  pt: { ai: ['Agentes com ferramentas (MCP)', 'Saídas estruturadas com Zod', 'Extração de dados de documentos'], langs: ['Espanhol (nativo)', 'Inglês (B1)', 'Português (B1)'], obs: 'Observabilidade', multi: 'Arquitetura multitenant' },
-}[locale];
-
-const skillGroups = [
-  { titleKey: 'skills.frontend', layer: 'ui', skills: ['Vue 3 / Pinia', 'React / React Native', 'TypeScript', 'Tailwind CSS', 'PWA', 'Expo', 'Astro'] },
-  { titleKey: 'skills.backend', layer: 'api', skills: ['Node.js / Express', 'Python (FastAPI / Django)', 'REST / Webhooks / SSE', 'Socket.IO', 'BullMQ', 'Supabase Edge Functions (Deno)'] },
-  { titleKey: 'skills.ai', layer: 'ai', skills: ['Claude (API de Anthropic / Vertex AI)', 'Gemini', ...l10n.ai] },
-  { titleKey: 'skills.databases', layer: 'data', skills: ['PostgreSQL (Row-Level Security)', 'Supabase', 'Firestore', 'BigQuery', 'MySQL', 'MongoDB', 'Redis'] },
-  { titleKey: 'skills.devops', layer: 'cloud', skills: ['Docker / Compose', 'GCP (Cloud Run / Firebase)', 'Cloudflare Workers', 'AWS', 'GitHub Actions', 'Nginx / Caddy', `${l10n.obs} (OpenTelemetry / Prometheus / Sentry)`] },
-  { titleKey: 'skills.methods', skills: ['Vitest', 'Playwright', 'Cypress', 'k6 / JMeter', l10n.multi, 'Scrum', 'GitFlow', 'Code reviews'] },
-  { titleKey: 'skills.languages', skills: l10n.langs },
-];
+const groups = skillGroups(locale);
 ---
 
 <Section id="skills" title={translate('skills.title')}>
   <dl class="-mt-5">
-    {skillGroups.map((group) => (
+    {groups.map((group) => (
       <div data-layers={group.layer} class="grid gap-x-8 gap-y-1 border-b border-line py-5 last:border-b-0 last:pb-0 sm:grid-cols-4">
         <dt class="font-semibold">{translate(group.titleKey)}</dt>
         <dd class="leading-relaxed text-muted sm:col-span-3">{group.skills.join(', ')}</dd>

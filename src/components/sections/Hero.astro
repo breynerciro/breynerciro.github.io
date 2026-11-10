@@ -53,7 +53,7 @@ const hrefs = ['/#experience', '/projects/breventa/', '/projects/denty/'].map((h
 
     <div style="--i:3" class="enter mt-10 flex flex-wrap gap-3">
       <a href={localizedHref(locale, '/#projects')} class="btn btn-solid">{translate('hero.cta')}</a>
-      <a href={`/cv/breyner-ciro-cv-${locale}.pdf`} download class="btn">
+      <a href={localizedHref(locale, '/cv/')} class="btn">
         {translate('cv.download')}
       </a>
       <a href={localizedHref(locale, '/#contact')} class="btn">{translate('hero.cta secondary')}</a>

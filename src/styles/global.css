@@ -132,6 +132,17 @@ body {
   animation-delay: calc(var(--i, 0) * 90ms);
 }
 
+@media print {
+  :root, .dark {
+    --color-bg: #fff;
+    --color-text: #000;
+    --color-muted: #333;
+    --color-line: #999;
+    --color-accent: #000;
+  }
+  body > header, body > footer, #scene { display: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

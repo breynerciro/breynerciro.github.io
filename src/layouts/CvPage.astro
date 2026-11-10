@@ -1,0 +1,126 @@
+---
+// Hoja de vida generada con los mismos datos del portafolio. Una sola columna, encabezados
+// estándar y texto real para que los ATS la lean; se descarga como PDF desde el navegador.
+import type { Locale } from '../i18n/locales';
+import { t, localizedHref } from '../i18n/utils';
+import { getLocalized, formatDate } from '../utils/content';
+import { skillGroups, degrees } from '../utils/profile';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const translate = t(locale);
+const site = 'https://breynerciro.github.io';
+const byDate = <T,>(get: (x: T) => Date) => (a: T, b: T) => get(b).valueOf() - get(a).valueOf();
+const experiences = (await getLocalized('experience', locale)).sort(byDate((e) => e.data.startDate));
+const projects = await getLocalized('projects', locale);
+const certs = (await getLocalized('certifications', locale)).sort(byDate((c) => c.data.issuedDate));
+const period = (from: Date, to?: Date) =>
+  `${formatDate(from, locale)} – ${to ? formatDate(to, locale) : translate('experience.present')}`;
+---
+
+<BaseLayout
+  locale={locale}
+  title={`Breyner Ciro — ${translate('cv.title')}`}
+  description={translate('hero.subtitle')}
+  canonicalPath="/cv/"
+>
+  <div class="mx-auto max-w-3xl px-5 py-10 sm:px-8 print:max-w-none print:p-0">
+    <div class="mb-8 flex flex-wrap items-center gap-x-5 gap-y-3 print:hidden">
+      <button type="button" id="cv-print" class="btn btn-solid">{translate('cv.pdf')}</button>
+      <p class="text-sm text-muted">{translate('cv.hint')}</p>
+    </div>
+
+    <article class="cv">
+      <header>
+        <h1>Breyner Ismael Ciro Otero</h1>
+        <p class="cv-role">{translate('hero.role')}</p>
+        <p>Bogotá, Colombia | +57 318 342 0438 | breynerismael@gmail.com</p>
+        <p>
+          linkedin.com/in/breyner-ciro-38011330b | github.com/breynerciro |{' '}
+          <a href={`${site}${localizedHref(locale, '/')}`}>breynerciro.github.io</a>
+        </p>
+      </header>
+
+      <h2>{translate('cv.profile')}</h2>
+      <p>{translate('about.p1')} {translate('about.p2')}</p>
+
+      <h2>{translate('skills.title')}</h2>
+      <ul>
+        {skillGroups(locale).map((g) => <li><strong>{translate(g.titleKey)}:</strong> {g.skills.join(', ')}.</li>)}
+      </ul>
+
+      <h2>{translate('experience.title')}</h2>
+      {experiences.map((exp) => (
+        <section>
+          <h3>
+            <span><strong>{exp.data.company}</strong> | {exp.data.role}</span>
+            <span>{period(exp.data.startDate, exp.data.endDate)}</span>
+          </h3>
+          <ul>{exp.data.highlights.map((h) => <li>{h}</li>)}</ul>
+        </section>
+      ))}
+
+      <h2>{translate('projects.title')}</h2>
+      {projects.map((pr) => (
+        <section>
+          <h3>
+            <strong>{pr.data.title}</strong>
+            <span>{pr.data.pubDate.getUTCFullYear()}</span>
+          </h3>
+          <p>{pr.data.description}</p>
+          <p>{translate('projects.stack')}: {pr.data.stack.join(', ')}.</p>
+        </section>
+      ))}
+
+      <h2>{translate('education.degree')}</h2>
+      {degrees[locale].map(([title, school, years]) => (
+        <h3><span><strong>{title}</strong> | {school}</span><span>{years}</span></h3>
+      ))}
+
+      <h2>{translate('education.certs')}</h2>
+      <ul>
+        {certs.map((c) => <li><strong>{c.data.title}:</strong> {c.data.issuer} ({formatDate(c.data.issuedDate, locale)}).</li>)}
+      </ul>
+    </article>
+  </div>
+</BaseLayout>
+
+<script>
+  document.getElementById('cv-print')?.addEventListener('click', () => print());
+</script>
+
+<style>
+  .cv { line-height: 1.5; }
+  .cv h1 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; line-height: 1.15; }
+  .cv header { margin-bottom: 0.5rem; }
+  .cv header p { color: var(--color-muted); }
+  .cv .cv-role { color: var(--color-text); font-size: 1.125rem; font-weight: 600; }
+  .cv h2 {
+    margin: 1.4rem 0 0.5rem;
+    border-bottom: 1px solid var(--color-line);
+    padding-bottom: 0.2rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+  .cv section { margin-bottom: 0.8rem; break-inside: avoid; }
+  .cv h3 { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 1rem; font-weight: 400; }
+  .cv h3 > span:last-child { color: var(--color-muted); }
+  .cv ul { list-style: disc; padding-left: 1.25rem; }
+  .cv li { margin-top: 0.2rem; }
+  .cv p + p { margin-top: 0.15rem; }
+
+  @media print {
+    @page { size: A4; margin: 1.2cm 1.4cm; }
+    .cv { font-size: 9.5pt; line-height: 1.35; }
+    .cv section { margin-bottom: 0.5rem; }
+    .cv li { margin-top: 0.1rem; }
+    .cv h1 { font-size: 20pt; }
+    .cv .cv-role { font-size: 11.5pt; }
+    .cv h2 { font-size: 11pt; margin-top: 0.75rem; }
+    .cv a { color: inherit; text-decoration: none; }
+  }
+</style>

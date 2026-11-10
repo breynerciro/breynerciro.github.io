@@ -3,6 +3,7 @@ import { type Locale } from '../../i18n/locales';
 import { t } from '../../i18n/utils';
 import { getLocalized, formatDate } from '../../utils/content';
 import Section from '../Section.astro';
+import { degrees } from '../../utils/profile';
 
 interface Props {
   locale: Locale;
@@ -14,16 +15,12 @@ const certs = (await getLocalized('certifications', locale)).sort(
   (a, b) => b.data.issuedDate.valueOf() - a.data.issuedDate.valueOf(),
 );
 
-const degrees = [
-  ['Ingeniería de Sistemas y Computación', 'Universidad Nacional de Colombia', '2018 – 2026'],
-  ['Técnico Laboral en Sistemas Informáticos', 'POLINTEC', '2016'],
-];
 ---
 
 <Section id="education" title={translate('education.title')}>
   <h3 class="mb-2 text-sm font-semibold text-muted">{translate('education.degree')}</h3>
   <ul class="mb-12 border-t border-line">
-    {degrees.map(([title, school, years]) => (
+    {degrees[locale].map(([title, school, years]) => (
       <li class="grid gap-x-8 border-b border-line py-4 sm:grid-cols-4 sm:items-baseline">
         <div class="sm:col-span-3">
           <p class="font-display text-xl font-semibold tracking-tight">{title}</p>

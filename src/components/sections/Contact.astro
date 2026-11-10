@@ -1,6 +1,6 @@
 ---
 import { locales, localeLabels, type Locale } from '../../i18n/locales';
-import { t } from '../../i18n/utils';
+import { t, localizedHref } from '../../i18n/utils';
 import Section from '../Section.astro';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const translate = t(locale);
-const cv = (l: Locale) => `/cv/breyner-ciro-cv-${l}.pdf`;
+const cv = (l: Locale) => localizedHref(l, '/cv/');
 ---
 
 <Section id="contact" title={translate('contact.title')}>
@@ -28,9 +28,9 @@ const cv = (l: Locale) => `/cv/breyner-ciro-cv-${l}.pdf`;
   </ul>
 
   <p class="mt-6 text-muted">
-    {translate('cv.download')} (PDF):{' '}
+    {translate('cv.title')}:{' '}
     {locales.map((l, i) => (
-      <>{i > 0 && ' / '}<a href={cv(l)} download hreflang={l} class="link">{localeLabels[l]}</a></>
+      <>{i > 0 && ' / '}<a href={cv(l)} hreflang={l} class="link">{localeLabels[l]}</a></>
     ))}
   </p>
 </Section>

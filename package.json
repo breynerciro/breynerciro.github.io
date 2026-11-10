@@ -9,9 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "sync:cv": "node scripts/sync-cv.mjs",
-    "build:cv": "scripts/build-cv.sh"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

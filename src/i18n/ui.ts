@@ -21,6 +21,11 @@ export const ui = {
     'hero.now': "En qué trabajo ahora",
     'cv.download': "Descargar hoja de vida",
 
+    'cv.title': 'Hoja de vida',
+    'cv.profile': 'Perfil profesional',
+    'cv.pdf': 'Descargar PDF',
+    'cv.hint': 'En el cuadro de impresión elige "Guardar como PDF".',
+
     // About
     'about.title': 'Sobre mí',
     'about.p1': "Soy Ingeniero de Sistemas y Computación de la Universidad Nacional de Colombia. Construyo producto SaaS de punta a punta: frontend en Vue y React con TypeScript, backends en Node.js y Python, y datos en PostgreSQL, Firestore y BigQuery.",
@@ -103,6 +108,11 @@ export const ui = {
     'hero.now': "What I'm working on now",
     'cv.download': "Download résumé",
 
+    'cv.title': 'Résumé',
+    'cv.profile': 'Professional summary',
+    'cv.pdf': 'Download PDF',
+    'cv.hint': 'In the print dialog, choose "Save as PDF".',
+
     // About
     'about.title': 'About Me',
     'about.p1': "I am a Systems and Computing Engineer from Universidad Nacional de Colombia. I build SaaS products end to end: Vue and React frontends with TypeScript, Node.js and Python backends, and data in PostgreSQL, Firestore and BigQuery.",
@@ -184,6 +194,11 @@ export const ui = {
 
     'hero.now': "No que estou trabalhando agora",
     'cv.download': "Baixar currículo",
+
+    'cv.title': 'Currículo',
+    'cv.profile': 'Perfil profissional',
+    'cv.pdf': 'Baixar PDF',
+    'cv.hint': 'Na janela de impressão, escolha "Salvar como PDF".',
 
     // About
     'about.title': 'Sobre Mim',
