@@ -4,206 +4,134 @@
 /* ── Dark mode via class strategy ── */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* ── Design tokens (Terminal Theme) ── */
+/* ── Design tokens: blanco neutro, grafito y verde esmeralda ── */
 @theme {
-  /* Brand Green — used ONLY for accents, prompts, highlights */
-  --color-brand-50:  #f0fff4;
-  --color-brand-100: #c6f6d5;
-  --color-brand-200: #9ae6b4;
-  --color-brand-300: #68d391;
-  --color-brand-400: #48bb78;
-  --color-brand-500: #38a169; /* Primary accent — muted professional green */
-  --color-brand-600: #2f855a;
-  --color-brand-700: #276749;
-  --color-brand-800: #1c4532;
-  --color-brand-900: #0f2e1f;
-  --color-brand-950: #071a11;
+  --color-bg:      #f7f8f8;
+  --color-surface: #ffffff;
+  --color-text:    #1c1f23;
+  --color-muted:   #5b636b;
+  --color-line:    #dce0e3;
+  --color-accent:  #0f7b5f; /* enlaces y acentos sobre el fondo */
+  --color-band:    #1c1f23; /* franja del hero */
+  --color-mark:    #34d399; /* foco de teclado, subrayados y marca de "actual" */
 
-  /* Terminal Neon — only for glow effects and key highlights */
-  --color-neon: #4ade80;       /* bright green, used sparingly */
-  --color-neon-dim: #16a34a;   /* dimmer neon for borders */
-
-  /* Surface Colors — near-black, not pure black */
-  --color-surface-50:  #2d2d2d;
-  --color-surface-100: #252525;
-  --color-surface-200: #1e1e1e;
-  --color-surface-300: #1a1a1a;
-  --color-surface-800: #141414;
-  --color-surface-850: #111111;
-  --color-surface-900: #0d0d0d;
-  --color-surface-950: #0a0a0a;
-
-  /* Accent — cyan used very sparingly */
-  --color-accent-400: #67e8f9;
-  --color-accent-500: #22d3ee;
-  --color-accent-600: #0891b2;
-
-  /* Semantic tokens — THE KEY CHANGE */
-  --color-bg:         var(--color-surface-950);  /* near-black, not #000 */
-  --color-bg-alt:     var(--color-surface-900);
-  --color-surface:    var(--color-surface-850);
-  --color-text:       #e2e8f0;  /* slate-200 — white/gray for body text */
-  --color-text-muted: #94a3b8;  /* slate-400 — neutral gray for secondary text */
-  --color-border:     #1e2d1e;  /* very subtle green-tinted border */
-
-  /* Font families - ALL MONOSPACE */
-  --font-sans: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'SF Mono', monospace;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'SF Mono', monospace;
-
-  /* Spacing scale */
-  --spacing-section: 6rem;
-
-  /* Border radius - Sharper for terminal look */
-  --radius-sm:  0px;
-  --radius-md:  0px;
-  --radius-lg:  2px;
-  --radius-xl:  4px;
-  --radius-2xl: 4px;
+  --font-display: 'Bricolage Grotesque', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 }
 
-/* ── Base styles ── */
+/* Oscuro: neutros con un toque del tono de acento, sin negro puro; las superficies
+   suben de luminosidad con la elevación y el acento se aclara y desatura para no vibrar.
+   La franja deja de ser grafito (no contrasta con el fondo) y pasa a esmeralda profundo. */
+.dark {
+  --color-bg:      #101413;
+  --color-surface: #181e1c;
+  --color-text:    #e6ebe9;
+  --color-muted:   #9ca8a3;
+  --color-line:    #29322f;
+  --color-accent:  #5fd9af;
+  --color-band:    #0d4a3a;
+  --color-mark:    #7ee2bf;
+}
+
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
+html.dark { color-scheme: dark; }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
-  /* Very subtle grid pattern — professional, not distracting */
-  background-image:
-    linear-gradient(rgba(74, 222, 128, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 222, 128, 0.025) 1px, transparent 1px);
-  background-size: 40px 40px;
 }
 
-/* ── Selection ── */
 ::selection {
-  background-color: var(--color-brand-800);
-  color: #e2e8f0;
+  background-color: var(--color-mark);
+  color: #1c1f23;
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-surface-200);
-  border-radius: 0;
-}
-::-webkit-scrollbar-thumb:hover { background-color: var(--color-brand-700); }
-
-/* ── Terminal Window component ── */
-.terminal-window {
-  border: 1px solid #1e2d1e;
-  background-color: var(--color-bg-alt);
-  position: relative;
-  /* Subtle inner shadow to give depth */
-  box-shadow: inset 0 1px 0 rgba(74, 222, 128, 0.04);
+:focus-visible {
+  outline: 3px solid var(--color-mark);
+  outline-offset: 2px;
 }
 
-.terminal-window:hover {
-  border-color: var(--color-brand-700);
-}
-
-.terminal-header {
-  border-bottom: 1px solid #1e2d1e;
-  background-color: var(--color-surface-900);
-  padding: 0.4rem 0.75rem;
-  display: flex;
+/* ── Botones ── */
+.btn {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1.5px solid currentColor;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: background-color 0.15s, color 0.15s;
 }
+.btn:hover { background-color: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
+.btn-solid { background-color: var(--color-accent); border-color: var(--color-accent); color: var(--color-bg); }
 
-/* macOS traffic light dots — correct colors */
-.terminal-dot {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-}
-.terminal-dot.dot-red    { background-color: #ff5f57; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.3); }
-.terminal-dot.dot-yellow { background-color: #febc2e; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.3); }
-.terminal-dot.dot-green  { background-color: #28c840; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.3); }
+/* Sobre la franja cobalto del hero */
+.on-band .btn:hover,
+.on-band .btn-solid { background-color: #fff; border-color: #fff; color: var(--color-band); }
+.on-band .btn-solid:hover { background-color: var(--color-mark); border-color: var(--color-mark); color: #1c1f23; }
 
-/* ── Prompt prefix utility ── */
-.prompt-line::before {
-  content: '$ ';
-  color: var(--color-neon);
-  font-family: var(--font-mono);
-}
-
-/* ── Section heading style ── */
-.section-cmd {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: #e2e8f0;
-}
-.section-cmd .cmd-prompt { color: var(--color-neon); }
-.section-cmd .cmd-cursor {
-  color: var(--color-neon);
-  animation: blink 1.2s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-
-/* ── Prose styles for blog (Terminal flavor) ── */
-.prose h1,
-.prose h2,
-.prose h3 {
-  color: #f1f5f9;
-  font-weight: 700;
-}
-
-.prose h2::before {
-  content: '> ';
-  color: var(--color-neon);
-}
-
-.prose p    { color: #cbd5e1; }
-.prose ul,
-.prose ol   { color: #cbd5e1; }
-
-.prose a {
-  color: var(--color-accent-500);
+/* ── Enlace de texto ── */
+.link {
+  color: var(--color-accent);
+  font-weight: 600;
   text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
-.prose a:hover {
-  color: var(--color-accent-400);
+.link:hover { text-decoration-color: var(--color-mark); text-decoration-thickness: 3px; }
+
+/* ── Prosa (blog y casos de estudio) ── */
+.prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-lead: var(--color-muted);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-bullets: var(--color-accent);
+  --tw-prose-hr: var(--color-line);
+  --tw-prose-quotes: var(--color-text);
+  --tw-prose-quote-borders: var(--color-mark);
+  --tw-prose-captions: var(--color-muted);
+  --tw-prose-code: var(--color-text);
+  --tw-prose-pre-code: #e9ecee;
+  --tw-prose-pre-bg: #1c1f23;
+  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-td-borders: var(--color-line);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+.prose h2, .prose h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+.prose blockquote { font-style: normal; }
+.prose blockquote p::before, .prose blockquote p::after { content: none; }
+.prose :not(pre) > code {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.prose :not(pre) > code::before, .prose :not(pre) > code::after { content: none; }
+
+/* ── Entrada del hero: una sola secuencia al cargar ── */
+@keyframes rise3d {
+  from { opacity: 0; transform: perspective(900px) rotateX(-28deg) translateY(36px); }
+  to   { opacity: 1; transform: none; }
+}
+.enter {
+  transform-origin: 50% 100%;
+  animation: rise3d 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i, 0) * 90ms);
 }
 
-.prose code {
-  color: var(--color-neon);
-  border: 1px solid #1e2d1e;
-  padding: 0.15em 0.4em;
-  background: transparent;
-  font-size: 0.875em;
-}
-
-.prose pre {
-  background-color: var(--color-bg-alt) !important;
-  border: 1px solid #1e2d1e;
-  color: #e2e8f0;
-  padding: 1rem;
-}
-
-.prose blockquote {
-  border-left: 2px solid var(--color-neon-dim);
-  color: #94a3b8;
-}
-
-.prose img {
-  border: 1px solid #1e2d1e;
-}
-
-.prose hr {
-  border-color: #1e2d1e;
-  border-style: dashed;
-}
-
-/* Accesibilidad: sin cursor parpadeante ni scroll animado si el usuario lo pide */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

@@ -1,0 +1,149 @@
+\documentclass[11pt,a4paper]{article}
+
+% Paquetes esenciales
+\usepackage{cmap} % texto copiable/legible por ATS; debe ir antes de fontenc
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[brazilian]{babel}
+\usepackage[left=1.5cm, right=1.5cm, top=1.5cm, bottom=1.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+% Configuración de enlaces
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    pdftitle={CV - Breyner Ismael Ciro Otero},
+}
+
+% Formato de secciones (Línea debajo del título)
+\titleformat{\section}
+  {\large\bfseries\uppercase}
+  {}
+  {0em}
+  {}[\titlerule]
+\titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{1ex plus .2ex}
+
+% Desactivar numeración de páginas
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{center}
+    {\huge \textbf{BREYNER ISMAEL CIRO OTERO}} \\ \vspace{0.15cm}
+    {\large Engenheiro de Software Full Stack $\cdot$ TypeScript $\cdot$ Vue/React $\cdot$ Node.js $\cdot$ GCP/AWS $\cdot$ IA aplicada} \\ \vspace{0.15cm}
+    Bogotá, Colombia | +57 3183420438 | \href{mailto:breynerismael@gmail.com}{breynerismael@gmail.com} \\ \vspace{0.1cm}
+    \href{https://www.linkedin.com/in/breyner-ciro-38011330b/}{LinkedIn} | \href{https://github.com/breynerciro}{GitHub} | \href{https://breynerciro.github.io/}{Portfólio}
+\end{center}
+
+\vspace{0.2cm}
+
+\section*{Perfil Profissional}
+Engenheiro de Sistemas e Computação (Universidad Nacional de Colombia) que constrói produtos SaaS de ponta a ponta: frontend em Vue e React com TypeScript, backends em Node.js e Python, e dados em PostgreSQL, Firestore e BigQuery sobre GCP, Supabase e Cloudflare. Hoje constrói agentes de IA (Claude, Gemini, MCP) sobre dados reais de negócio em uma plataforma logística e desenvolve dois produtos próprios: um PDV com faturamento eletrônico e uma plataforma para consultórios odontológicos. Trabalha com testes automatizados e implantações em contêineres.
+
+\section*{Habilidades Técnicas}
+\begin{itemize}[leftmargin=*, noitemsep]
+    \item \textbf{Linguagens:} TypeScript, JavaScript (ES6+), Python, SQL.
+    \item \textbf{Frontend \& Mobile:} Vue 3 (Pinia), React, React Native, Expo, Tailwind CSS, Vite, PWA, Astro.
+    \item \textbf{Backend \& APIs:} Node.js, Express, FastAPI, Django, APIs RESTful, Webhooks, SSE, Socket.IO, BullMQ, Supabase Edge Functions (Deno), Gmail API, Microsoft Graph, WhatsApp Cloud API.
+    \item \textbf{IA aplicada:} Agentes sobre LLMs (Claude via API da Anthropic e Vertex AI, Gemini), Model Context Protocol (MCP), saídas estruturadas com Zod, extração de dados de documentos.
+    \item \textbf{Dados \& Cloud:} PostgreSQL (Row-Level Security), Supabase, Firebase (Firestore, Cloud Functions), BigQuery, Cloud Run, Cloudflare Workers, MySQL, MongoDB, Redis, AWS, Docker, Nginx, Caddy, GitHub Actions.
+    \item \textbf{Qualidade \& Práticas:} Vitest, Playwright, Cypress, k6, JMeter, observabilidade (OpenTelemetry, Prometheus, Sentry), Code Reviews, GitFlow, Scrum, arquitetura multitenant e de microsserviços.
+    \item \textbf{Idiomas:} Espanhol (nativo), Inglês (B1), Português (B1).
+\end{itemize}
+
+\section*{Experiência Profissional}
+
+\noindent
+\textbf{Kila} | \textit{Desenvolvedor Júnior de Engenharia de Software} \hfill Outubro de 2026 – Atual \\
+\textit{SaaS logístico para importadores e freight forwarders.}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Faço parte da equipe de engenharia de uma plataforma SaaS que centraliza a operação de comércio exterior dos clientes; atuo de ponta a ponta em frontend, backend serverless e dados (\textbf{Vue 3, Pinia, TypeScript, Firebase, BigQuery, Cloud Run}).
+    \item Construo agentes de IA no produto com \textbf{Claude} (API da Anthropic e Vertex AI) e \textbf{Gemini}: um assistente que monta dashboards com dados ao vivo do BigQuery e um agente de suporte de primeiro nível que revisa tickets e deixa rascunhos para aprovação humana.
+    \item Dou aos agentes acesso aos dados do negócio com \textbf{Model Context Protocol (MCP)}, contratos \textbf{Zod} e respostas em streaming (SSE), isolando os dados de cada cliente com testes de contrato multitenant que bloqueiam a implantação no CI.
+    \item Fortaleço a confiabilidade e a atualidade dos dados operacionais e aduaneiros usados pelos clientes para decidir; reduzi pela metade o tempo de sincronização com o data warehouse (de mais de 2 min para cerca de 1 min).
+    \item Entrego funcionalidades de operação como a conciliação de faturas contra ordens de compra, campos personalizados para o armazém e menções no e-mail integrado (\textbf{Gmail, Microsoft Graph}), com testes automatizados em 4 serviços.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{CardioDiagnostico del Sur} | \textit{Desenvolvedor Frontend} \hfill Janeiro de 2024 – Agosto de 2024
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Construí o site institucional de uma clínica de cardiologia como Single Page Application com \textbf{React} e \textbf{TypeScript} (serviços, demonstrações financeiras e contato), com código fortemente tipado.
+    \item Desenvolvi uma interface 100\% responsiva com \textbf{Tailwind CSS} e conduzi a entrada em produção com \textbf{Vite} e implantação na Hostinger.
+    \item Facilitei o agendamento de consultas com um botão de WhatsApp (mensagem pré-preenchida) e um formulário de contato com backend próprio em \textbf{Node.js/Express} que envia as mensagens por e-mail.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{Projetos Corporativos (Freelance / U. Nacional)} | \textit{Desenvolvedor de Software} \hfill 2022 – 2024
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Integrei SPAs com backends relacionais e validei seu comportamento sob concorrência com testes de carga e estresse.
+    \item Padronizei os ambientes de desenvolvimento e produção com configurações reproduzíveis em \textbf{Docker} e docker-compose.
+    \item Automatizei os fluxos de integração e entrega contínua com pipelines no \textbf{GitHub Actions}.
+\end{itemize}
+
+\section*{Projetos em Destaque}
+
+\noindent
+\textbf{BREVENTA – SaaS de Ponto de Venda e Faturamento Eletrônico (produto próprio)} \hfill 2026
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Desenvolvo um PDV multiempresa em monorepo: PWA em \textbf{Vue 3}, \textbf{Pinia} e \textbf{Tailwind CSS}, API em \textbf{Node.js}, \textbf{Express} e \textbf{TypeScript}, e um microsserviço em \textbf{FastAPI} para o faturamento eletrônico junto à autoridade fiscal colombiana (DIAN; CUFE, assinatura XAdES), sobre \textbf{PostgreSQL} com Row-Level Security por empresa, \textbf{Redis}, BullMQ e Socket.IO.
+    \item Preparei a operação com \textbf{Docker Compose} e Caddy (HTTPS), observabilidade com OpenTelemetry, Prometheus e Sentry, 62 testes \textbf{Playwright} de segurança, responsividade e acessibilidade, testes de carga com \textbf{k6} (50 empresas) e análise de segurança com semgrep, gitleaks e trivy.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{DENTY – Gestão de Consultórios Odontológicos (produto próprio, em produção)} \hfill 2026
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Construí uma PWA em \textbf{Vue 3}, \textbf{TypeScript} e \textbf{Tailwind CSS} sobre \textbf{Supabase} (PostgreSQL com Row-Level Security, Auth, Storage, Edge Functions em Deno, pg\_cron) e \textbf{Cloudflare Workers}: pacientes, prontuário com odontograma, agenda, orçamentos e termos de consentimento assinados em PDF com hash SHA-256.
+    \item Integrei um assistente de \textbf{WhatsApp} com \textbf{Gemini} que confirma, agenda e reagenda consultas, e deixei no banco de dados as regras do negócio: evoluções assinadas imutáveis, log de auditoria e acesso somente por convite.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{HEMODENT – Aplicativo Móvel Educativo em Saúde (Projeto de TCC)} \hfill 2026
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Desenvolvi um app multiplataforma (iOS/Android) para pacientes com hemofilia com \textbf{React Native}, \textbf{TypeScript} e \textbf{Expo} (SDK 57, Expo Router), com persistência offline (AsyncStorage), animações (Reanimated) e lembretes por notificações locais.
+    \item Projetei uma interface (UX/UI) adaptada à faixa etária, com acesso a protocolos de emergência odontológica e um centro de conhecimento médico especializado.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{OSP – Overwatch Sentinel Platform (Plataforma Edge de Visão Computacional, projeto em equipe)} \hfill 2025
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Desenvolvi uma plataforma de vigilância com visão computacional usando \textbf{TensorFlow Lite} em \textbf{Raspberry Pi} (Edge Computing) para detecção de objetos e otimização da gravação de vídeo.
+    \item Projetei uma arquitetura de microsserviços com backend (\textbf{Python/Node.js}), frontend (\textbf{React}) e bancos de dados (\textbf{PostgreSQL, MongoDB}), comunicando-se por APIs RESTful, OAuth2 (Google) e JWT.
+    \item Orquestrei a implantação em 5 ambientes com \textbf{Docker}, um API Gateway (\textbf{Vert.x}) com padrão Gatekeeper e proxy reverso (\textbf{Nginx}); validei alta disponibilidade e tolerância a falhas com testes de estresse no \textbf{JMeter}.
+\end{itemize}
+
+\section*{Formação}
+
+\noindent
+\textbf{Engenheiro de Sistemas e Computação} | Universidad Nacional de Colombia \hfill Formado: Setembro de 2026 \\
+\textit{Bogotá D.C., Colômbia.}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{Técnico em Sistemas de Informática} | POLINTEC \hfill Dezembro de 2016 \\
+\textit{Puerto Asís, Putumayo.}
+
+\section*{Certificações}
+\begin{itemize}[leftmargin=*, noitemsep]
+    \item \textbf{Diplomado em Arquitetura e Qualidade de Software (192h, 3 módulos):} Universidad Nacional de Colombia. Concluídos: Engenharia de Software Baseada em Nuvem e Qualidade de Software. Em andamento: Arquitetura de Software em Grande Escala (termina em novembro de 2026).
+    \item \textbf{AWS Academy Graduate - Cloud Foundations (20h):} Credly (Novembro de 2025).
+    \item \textbf{Curso Básico de Power BI (8h):} Datly Educación (Julho de 2025).
+\end{itemize}
+
+\end{document}

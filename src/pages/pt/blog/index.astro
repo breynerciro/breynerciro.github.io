@@ -16,23 +16,22 @@ const posts = await getLocalized('blog', locale);
   canonicalPath="/blog/"
 >
   <section class="py-20">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-6xl px-5 sm:px-8">
       <!-- Section header -->
       <div class="mb-12">
-        <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">
+        <h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
           {translate('blog.title')}
-          <span class="ml-2 text-brand-500">.</span>
         </h1>
       </div>
 
       {posts.length > 0 ? (
-        <div class="grid gap-6 sm:grid-cols-2">
+        <div class="border-t border-line">
           {posts.map((post) => (
             <BlogCard post={post} locale={locale} />
           ))}
         </div>
       ) : (
-        <p class="text-text-muted">{translate('blog.noPosts')}</p>
+        <p class="text-muted">{translate('blog.noPosts')}</p>
       )}
     </div>
   </section>

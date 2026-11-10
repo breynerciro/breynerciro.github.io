@@ -2,6 +2,7 @@
 import { type Locale } from '../../i18n/locales';
 import { t, localizedHref } from '../../i18n/utils';
 import { slugFromId } from '../../utils/content';
+import { layersOf } from '../../utils/layers';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -15,70 +16,22 @@ const { data } = project;
 const detailUrl = localizedHref(locale, `/projects/${slugFromId(project.id)}/`);
 ---
 
-<article class="terminal-window group flex flex-col transition-all hover:border-[#276749]">
-  <!-- macOS title bar -->
-  <div class="terminal-header">
-    <div class="flex gap-1.5">
-      <span class="terminal-dot dot-red"></span>
-      <span class="terminal-dot dot-yellow"></span>
-      <span class="terminal-dot dot-green"></span>
-    </div>
-    <span class="ml-2 flex-1 truncate text-xs font-mono text-[#94a3b8]">
-      ~/projects/{data.title.toLowerCase().replace(/\s+/g, '-')}
-    </span>
-    <!-- Links in title bar -->
-    <div class="relative z-10 flex gap-3">
-      {data.repoUrl && (
-        <a
-          href={data.repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-mono text-xs text-[#94a3b8] transition-colors hover:text-[#4ade80]"
-          aria-label={translate('projects.viewCode')}
-        >
-          [src]
-        </a>
-      )}
-      {data.demoUrl && (
-        <a
-          href={data.demoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-mono text-xs text-[#94a3b8] transition-colors hover:text-[#22d3ee]"
-          aria-label={translate('projects.viewLive')}
-        >
-          [live]
-        </a>
-      )}
-    </div>
-  </div>
-
-  <!-- Card body -->
-  <div class="flex flex-1 flex-col p-5 font-mono">
-    <!-- Title -->
-    <h3 class="mb-3 text-base font-bold text-[#f1f5f9] transition-colors group-hover:text-[#4ade80]">
-      <a href={detailUrl} class="after:absolute after:inset-0">{data.title}</a>
-    </h3>
-
-    <!-- Description -->
-    <p class="mb-5 flex-1 text-sm leading-relaxed text-[#94a3b8]">
-      {data.description}
-    </p>
-
-    <p class="mb-4 text-xs font-bold text-[#4ade80]">→ {translate('projects.caseStudy')}</p>
-
-    <!-- Stack tags -->
-    {data.stack.length > 0 && (
-      <div class="border-t border-[#1e2d1e] pt-4">
-        <div class="flex flex-wrap gap-1.5">
-          {data.stack.map((s) => (
-            <span class="border border-[#1e2d1e] bg-[#0d0d0d] px-2 py-0.5 text-xs text-[#94a3b8]
-                         transition-colors hover:border-[#276749] hover:text-[#e2e8f0]">
-              {s}
-            </span>
-          ))}
-        </div>
-      </div>
+<article data-layers={layersOf(data.stack)} class="group relative border-b border-line py-8 last:border-b-0 last:pb-0">
+  <p class="mb-1 text-sm text-muted">{data.pubDate.getUTCFullYear()}</p>
+  <h3 class="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+    <a href={detailUrl} class="decoration-mark decoration-[3px] underline-offset-4 after:absolute after:inset-0 group-hover:underline">
+      {data.title}
+    </a>
+  </h3>
+  <p class="mt-3 max-w-[70ch] leading-relaxed">{data.description}</p>
+  <p class="mt-3 max-w-[70ch] text-sm text-muted">{data.stack.join(', ')}</p>
+  <p class="relative z-10 mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm">
+    <a href={detailUrl} class="link">{translate('projects.caseStudy')}</a>
+    {data.repoUrl && (
+      <a href={data.repoUrl} target="_blank" rel="noopener noreferrer" class="link">{translate('projects.viewCode')}</a>
     )}
-  </div>
+    {data.demoUrl && (
+      <a href={data.demoUrl} target="_blank" rel="noopener noreferrer" class="link">{translate('projects.viewLive')}</a>
+    )}
+  </p>
 </article>

@@ -12,7 +12,7 @@ Construyo producto SaaS de punta a punta (Vue, React, Node.js, GCP/AWS) e integr
 
 ## 🚀 Sobre mí
 
-Desarrollador con experiencia construyendo aplicaciones web y móviles para salud, comercio exterior y logística. Me desempeño en todo el ciclo: frontend tipado, backends serverless y REST, datos e integración de IA (Claude, Gemini) — con foco en calidad, pruebas automatizadas y despliegue continuo.
+Desarrollador con experiencia construyendo aplicaciones web y móviles para salud, comercio exterior y logística. Me desempeño en todo el ciclo: frontend tipado, backends serverless y REST, datos y agentes de IA (Claude, Gemini, MCP) — con foco en calidad, pruebas automatizadas y despliegue continuo.
 
 Trabajo actualmente en **Kila** en una plataforma SaaS de comercio exterior, y colaboro en proyectos freelance y académicos.
 
@@ -35,6 +35,8 @@ Trabajo actualmente en **Kila** en una plataforma SaaS de comercio exterior, y c
 
 | Proyecto | Descripción | Stack |
 | :------- | :---------- | :---- |
+| **BreVenta** (privado) | SaaS de punto de venta multiempresa con facturación electrónica DIAN. Producto propio, en beta. | Vue 3, Node.js, FastAPI, PostgreSQL |
+| **Denty** (privado) | PWA de gestión para consultorios odontológicos con asistente de WhatsApp. Producto propio, en producción. | Vue 3, Supabase, Cloudflare Workers |
 | [**HEMODENT**](https://github.com/breynerciro/hemodent) | App móvil educativa en salud para pacientes con hemofilia: contenido por edad, emergencias dentales y uso sin conexión (proyecto de tesis). | React Native, TypeScript, Expo |
 | [**WORKIO**](https://github.com/breynerciro/FRONTEND-WORKIO) · [demo](https://workio-un.netlify.app) | Sistema full stack de reservas de espacios de coworking en Bogotá, con API REST autenticada. | React, Node.js, PostgreSQL |
 | [**OSP**](https://github.com/dafmontenegro/overwatch-sentinel-platform) | Vigilancia con visión artificial en el edge (TensorFlow Lite en Raspberry Pi) y microservicios dockerizados. Proyecto en equipo de 6. | Python, React, Docker |

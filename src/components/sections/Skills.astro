@@ -1,6 +1,7 @@
 ---
 import { type Locale } from '../../i18n/locales';
 import { t } from '../../i18n/utils';
+import Section from '../Section.astro';
 
 interface Props {
   locale: Locale;
@@ -10,140 +11,29 @@ const { locale } = Astro.props;
 const translate = t(locale);
 
 const l10n = {
-  es: { ai: ['Claude (Vertex AI) / Gemini', 'Extracción de datos de documentos', 'Asistentes con datos en vivo'], langs: ['Inglés (B1)', 'Portugués (B1)'] },
-  en: { ai: ['Claude (Vertex AI) / Gemini', 'Document data extraction', 'Assistants over live data'], langs: ['English (B1)', 'Portuguese (B1)'] },
-  pt: { ai: ['Claude (Vertex AI) / Gemini', 'Extração de dados de documentos', 'Assistentes com dados ao vivo'], langs: ['Inglês (B1)', 'Português (B1)'] },
+  es: { ai: ['Agentes con herramientas (MCP)', 'Salidas estructuradas con Zod', 'Extracción de datos de documentos'], langs: ['Español (nativo)', 'Inglés (B1)', 'Portugués (B1)'], obs: 'Observabilidad', multi: 'Arquitectura multitenant' },
+  en: { ai: ['Tool-using agents (MCP)', 'Structured outputs with Zod', 'Document data extraction'], langs: ['Spanish (native)', 'English (B1)', 'Portuguese (B1)'], obs: 'Observability', multi: 'Multi-tenant architecture' },
+  pt: { ai: ['Agentes com ferramentas (MCP)', 'Saídas estruturadas com Zod', 'Extração de dados de documentos'], langs: ['Espanhol (nativo)', 'Inglês (B1)', 'Português (B1)'], obs: 'Observabilidade', multi: 'Arquitetura multitenant' },
 }[locale];
 
 const skillGroups = [
-  {
-    titleKey: 'skills.backend',
-    file: 'backend',
-    skills: [
-      'Node.js / Express',
-      'Python (FastAPI/Django)',
-      'REST APIs / Webhooks',
-      'Vert.x',
-    ],
-  },
-  {
-    titleKey: 'skills.databases',
-    file: 'databases',
-    skills: [
-      'PostgreSQL',
-      'MySQL',
-      'MongoDB',
-      'Redis',
-    ],
-  },
-  {
-    titleKey: 'skills.frontend',
-    file: 'frontend',
-    skills: [
-      'React / React Native',
-      'Vue 3',
-      'TypeScript / JS (ES6+)',
-      'Tailwind CSS',
-      'Expo',
-      'Pinia / Vuex',
-    ],
-  },
-  {
-    titleKey: 'skills.devops',
-    file: 'devops',
-    skills: [
-      'Docker / Compose',
-      'GCP (Cloud Run / Firebase)',
-      'BigQuery',
-      'AWS',
-      'CI/CD & GitHub Actions',
-      'Nginx',
-      'Microservices Arch.',
-      'Edge Computing',
-    ],
-  },
-  {
-    titleKey: 'skills.ai',
-    file: 'ai',
-    skills: [
-      ...l10n.ai,
-    ],
-  },
-  {
-    titleKey: 'skills.methods',
-    file: 'methods',
-    skills: [
-      'Scrum',
-      'GitFlow',
-      'Code Reviews',
-      'Clean Code',
-    ],
-  },
-  {
-    titleKey: 'skills.languages',
-    file: 'languages',
-    skills: [
-      ...l10n.langs,
-    ],
-  },
+  { titleKey: 'skills.frontend', layer: 'ui', skills: ['Vue 3 / Pinia', 'React / React Native', 'TypeScript', 'Tailwind CSS', 'PWA', 'Expo', 'Astro'] },
+  { titleKey: 'skills.backend', layer: 'api', skills: ['Node.js / Express', 'Python (FastAPI / Django)', 'REST / Webhooks / SSE', 'Socket.IO', 'BullMQ', 'Supabase Edge Functions (Deno)'] },
+  { titleKey: 'skills.ai', layer: 'ai', skills: ['Claude (API de Anthropic / Vertex AI)', 'Gemini', ...l10n.ai] },
+  { titleKey: 'skills.databases', layer: 'data', skills: ['PostgreSQL (Row-Level Security)', 'Supabase', 'Firestore', 'BigQuery', 'MySQL', 'MongoDB', 'Redis'] },
+  { titleKey: 'skills.devops', layer: 'cloud', skills: ['Docker / Compose', 'GCP (Cloud Run / Firebase)', 'Cloudflare Workers', 'AWS', 'GitHub Actions', 'Nginx / Caddy', `${l10n.obs} (OpenTelemetry / Prometheus / Sentry)`] },
+  { titleKey: 'skills.methods', skills: ['Vitest', 'Playwright', 'Cypress', 'k6 / JMeter', l10n.multi, 'Scrum', 'GitFlow', 'Code reviews'] },
+  { titleKey: 'skills.languages', skills: l10n.langs },
 ];
 ---
 
-<section id="skills" class="scroll-mt-20 py-20">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-
-    <!-- Section header -->
-    <div class="mb-12 font-mono">
-      <p class="mb-1 text-xs text-[#94a3b8]">
-        <span class="text-[#4ade80]">breynerciro@portfolio</span><span class="text-[#94a3b8]">:~/skills$</span>
-      </p>
-      <h2 class="text-3xl font-bold text-[#f1f5f9] sm:text-4xl">
-        <span class="text-[#4ade80]">./skills</span>
-        <span class="animate-[blink_1.2s_step-end_infinite] text-[#4ade80]">▋</span>
-      </h2>
-      <p class="mt-1 text-xs text-[#94a3b8]">// {translate('skills.title')}</p>
-    </div>
-
-    <div class="grid gap-6 md:grid-cols-2">
-      {skillGroups.map((group) => (
-        <div class="terminal-window">
-          <!-- macOS title bar -->
-          <div class="terminal-header">
-            <div class="flex gap-1.5">
-              <span class="terminal-dot dot-red"></span>
-              <span class="terminal-dot dot-yellow"></span>
-              <span class="terminal-dot dot-green"></span>
-            </div>
-            <span class="ml-2 text-xs font-mono text-[#94a3b8]">
-              ~/skills/{group.file}.log
-            </span>
-          </div>
-
-          <div class="p-5">
-            <!-- Group title -->
-            <h3 class="mb-5 font-mono text-sm font-bold text-[#4ade80]">
-              {translate(group.titleKey)}
-            </h3>
-
-            <ul class="flex flex-wrap gap-2 font-mono">
-              {group.skills.map((skill) => (
-                <li class="border border-[#1e2d1e] bg-[#0d0d0d] px-2.5 py-1 text-xs text-[#e2e8f0]
-                           transition-colors hover:border-[#276749]">
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-
-  </div>
-</section>
-
-<style>
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-  }
-</style>
+<Section id="skills" title={translate('skills.title')}>
+  <dl class="-mt-5">
+    {skillGroups.map((group) => (
+      <div data-layers={group.layer} class="grid gap-x-8 gap-y-1 border-b border-line py-5 last:border-b-0 last:pb-0 sm:grid-cols-4">
+        <dt class="font-semibold">{translate(group.titleKey)}</dt>
+        <dd class="leading-relaxed text-muted sm:col-span-3">{group.skills.join(', ')}</dd>
+      </div>
+    ))}
+  </dl>
+</Section>

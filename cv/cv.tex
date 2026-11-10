@@ -46,17 +46,18 @@
 
 % --- PERFIL PROFESIONAL ---
 \section*{Perfil Profesional}
-Ingeniero de Sistemas y Computación (Universidad Nacional de Colombia) que construye producto SaaS de punta a punta: frontend en Vue y React con TypeScript, backends en Node.js y Python, y datos en Firestore, PostgreSQL y BigQuery sobre GCP y AWS. Hoy integra LLMs (Claude, Gemini) en flujos reales de negocio en una plataforma logística. Trabaja con pruebas automatizadas y despliegues en contenedores.
+Ingeniero de Sistemas y Computación (Universidad Nacional de Colombia) que construye producto SaaS de punta a punta: frontend en Vue y React con TypeScript, backends en Node.js y Python, y datos en PostgreSQL, Firestore y BigQuery sobre GCP, Supabase y Cloudflare. Hoy construye agentes de IA (Claude, Gemini, MCP) sobre datos reales de negocio en una plataforma logística y desarrolla dos productos propios: un POS con facturación electrónica y una plataforma para consultorios odontológicos. Trabaja con pruebas automatizadas y despliegues en contenedores.
 
 % --- HABILIDADES TÉCNICAS ---
 \section*{Habilidades Técnicas}
 \begin{itemize}[leftmargin=*, noitemsep]
     \item \textbf{Lenguajes:} TypeScript, JavaScript (ES6+), Python, SQL.
-    \item \textbf{Frontend \& Mobile:} Vue 3 (Pinia), React, React Native, Expo, Tailwind CSS, Vite.
-    \item \textbf{Backend \& APIs:} Node.js, Express, FastAPI, Django, APIs RESTful, Webhooks, Gmail API, Microsoft Graph.
-    \item \textbf{IA aplicada:} Integración de LLMs (Claude vía Vertex AI, Gemini), extracción de datos de documentos, asistentes con datos en vivo.
-    \item \textbf{Datos \& Cloud:} Firebase (Firestore, Cloud Functions), BigQuery, Cloud Run, PostgreSQL, MySQL, MongoDB, Redis, AWS, Docker, Nginx, GitHub Actions.
-    \item \textbf{Prácticas:} Testing (Vitest, JMeter), Code Reviews, GitFlow, Scrum, Arquitectura de Microservicios.
+    \item \textbf{Frontend \& Mobile:} Vue 3 (Pinia), React, React Native, Expo, Tailwind CSS, Vite, PWA, Astro.
+    \item \textbf{Backend \& APIs:} Node.js, Express, FastAPI, Django, APIs RESTful, Webhooks, SSE, Socket.IO, BullMQ, Supabase Edge Functions (Deno), Gmail API, Microsoft Graph, WhatsApp Cloud API.
+    \item \textbf{IA aplicada:} Agentes sobre LLMs (Claude vía API de Anthropic y Vertex AI, Gemini), Model Context Protocol (MCP), salidas estructuradas con Zod, extracción de datos de documentos.
+    \item \textbf{Datos \& Cloud:} PostgreSQL (Row-Level Security), Supabase, Firebase (Firestore, Cloud Functions), BigQuery, Cloud Run, Cloudflare Workers, MySQL, MongoDB, Redis, AWS, Docker, Nginx, Caddy, GitHub Actions.
+    \item \textbf{Calidad \& Prácticas:} Vitest, Playwright, Cypress, k6, JMeter, observabilidad (OpenTelemetry, Prometheus, Sentry), Code Reviews, GitFlow, Scrum, arquitectura multitenant y de microservicios.
+    \item \textbf{Idiomas:} Español (nativo), Inglés (B1), Portugués (B1).
 \end{itemize}
 
 % --- EXPERIENCIA PROFESIONAL ---
@@ -66,10 +67,11 @@ Ingeniero de Sistemas y Computación (Universidad Nacional de Colombia) que cons
 \textbf{Kila} | \textit{Desarrollador Junior de Ingeniería de Software} \hfill Octubre, 2026 – Actualidad \\
 \textit{SaaS logístico para importadores y freight forwarders.}
 \begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-    \item Formo parte del equipo de ingeniería de una plataforma SaaS que centraliza la operación de comercio exterior de sus clientes; aporto de punta a punta en frontend, backend serverless y datos (\textbf{Vue 3, TypeScript, Firebase, BigQuery, Cloud Run}).
-    \item Llevo la IA a funciones de producto: asistentes sobre LLMs (\textbf{Claude en Vertex AI, Gemini}) conectados a datos reales del negocio, diseñados para responder solo con información verificable.
+    \item Formo parte del equipo de ingeniería de una plataforma SaaS que centraliza la operación de comercio exterior de sus clientes; aporto de punta a punta en frontend, backend serverless y datos (\textbf{Vue 3, Pinia, TypeScript, Firebase, BigQuery, Cloud Run}).
+    \item Construyo agentes de IA en producto con \textbf{Claude} (API de Anthropic y Vertex AI) y \textbf{Gemini}: un asistente que arma dashboards con datos en vivo de BigQuery y un agente de soporte de primer nivel que revisa tickets y deja borradores para aprobación humana.
+    \item Doy a los agentes acceso a los datos del negocio con \textbf{Model Context Protocol (MCP)}, contratos \textbf{Zod} y respuestas en streaming (SSE), aislando los datos de cada cliente con pruebas de contrato multitenant que bloquean el despliegue en CI.
     \item Fortalezco la confiabilidad y la oportunidad de los datos operativos y aduaneros con los que los clientes toman decisiones; reduje a la mitad el tiempo de sincronización con el data warehouse (de más de 2 min a cerca de 1 min).
-    \item Conecto la plataforma con el ecosistema de correo de los clientes (\textbf{Gmail, Microsoft Graph}) y sostengo la calidad con pruebas automatizadas en 4 servicios.
+    \item Entrego funcionalidades de operación como la conciliación de facturas contra órdenes de compra, campos personalizados para bodega y menciones en el correo integrado (\textbf{Gmail, Microsoft Graph}), con pruebas automatizadas en 4 servicios.
 \end{itemize}
 
 \vspace{0.2cm}
@@ -96,6 +98,24 @@ Ingeniero de Sistemas y Computación (Universidad Nacional de Colombia) que cons
 \section*{Proyectos Destacados}
 
 \noindent
+\textbf{BREVENTA – SaaS de Punto de Venta y Facturación Electrónica (producto propio)} \hfill 2026
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Desarrollo un POS multiempresa en monorepo: PWA en \textbf{Vue 3}, \textbf{Pinia} y \textbf{Tailwind CSS}, API en \textbf{Node.js}, \textbf{Express} y \textbf{TypeScript}, y un microservicio en \textbf{FastAPI} para la facturación electrónica ante la DIAN (CUFE, firma XAdES), sobre \textbf{PostgreSQL} con Row-Level Security por empresa, \textbf{Redis}, BullMQ y Socket.IO.
+    \item Preparé la operación con \textbf{Docker Compose} y Caddy (HTTPS), observabilidad con OpenTelemetry, Prometheus y Sentry, 62 pruebas \textbf{Playwright} de seguridad, responsividad y accesibilidad, pruebas de carga con \textbf{k6} (50 empresas) y análisis de seguridad con semgrep, gitleaks y trivy.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{DENTY – Gestión de Consultorios Odontológicos (producto propio, en producción)} \hfill 2026
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item Construí una PWA en \textbf{Vue 3}, \textbf{TypeScript} y \textbf{Tailwind CSS} sobre \textbf{Supabase} (PostgreSQL con Row-Level Security, Auth, Storage, Edge Functions en Deno, pg\_cron) y \textbf{Cloudflare Workers}: pacientes, historia clínica con odontograma, agenda, presupuestos y consentimientos firmados en PDF con hash SHA-256.
+    \item Integré un asistente de \textbf{WhatsApp} con \textbf{Gemini} que confirma, agenda y reagenda citas, y dejé en la base de datos las reglas del negocio: evoluciones firmadas inmutables, bitácora de auditoría y acceso solo por invitación.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
 \textbf{HEMODENT – Aplicación Móvil Educativa en Salud (Proyecto de Tesis)} \hfill 2026
 \begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
     \item Desarrollé una app multiplataforma (iOS/Android) para pacientes con hemofilia con \textbf{React Native}, \textbf{TypeScript} y \textbf{Expo} (SDK 57, Expo Router), con persistencia offline (AsyncStorage), animaciones (Reanimated) y recordatorios mediante notificaciones locales.
@@ -105,20 +125,11 @@ Ingeniero de Sistemas y Computación (Universidad Nacional de Colombia) que cons
 \vspace{0.2cm}
 
 \noindent
-\textbf{WORKIO – Sistema de Reservas de Coworking (Full Stack)} \hfill 2025
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-    \item Construí con un equipo Scrum un sistema web de reservas de espacios de coworking: API REST en \textbf{Node.js}, \textbf{Express} y \textbf{TypeScript} organizada en capas, y frontend en \textbf{React}, \textbf{Vite} y \textbf{Tailwind CSS} publicado en Netlify.
-    \item Implementé el esquema relacional en \textbf{PostgreSQL}, autenticación con \textbf{JWT} y \textbf{bcrypt}, control de acceso por roles y validación de entradas con express-validator.
-\end{itemize}
-
-\vspace{0.2cm}
-
-\noindent
 \textbf{OSP – Overwatch Sentinel Platform (Plataforma Edge de Visión Artificial, proyecto en equipo)} \hfill 2025
 \begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
     \item Desarrollé una plataforma de vigilancia con visión por computadora usando \textbf{TensorFlow Lite} en \textbf{Raspberry Pi} (Edge Computing) para detección de objetos y optimización de grabación de video.
     \item Diseñé una arquitectura de microservicios con backend (\textbf{Python/Node.js}), frontend (\textbf{React}) y bases de datos (\textbf{PostgreSQL, MongoDB}), comunicados mediante RESTful APIs, OAuth2 (Google) y JWT.
-    \item Orquesté el despliegue en 5 entornos con \textbf{Docker}, un API Gateway (\textbf{Vert.x}) con patrón Gatekeeper y proxy reverso (\textbf{Nginx}) con red privada segmentada contra DDoS, SQLi y MitM; validé alta disponibilidad y tolerancia a fallos con pruebas de estrés en \textbf{JMeter}.
+    \item Orquesté el despliegue en 5 entornos con \textbf{Docker}, un API Gateway (\textbf{Vert.x}) con patrón Gatekeeper y proxy reverso (\textbf{Nginx}); validé alta disponibilidad y tolerancia a fallos con pruebas de estrés en \textbf{JMeter}.
 \end{itemize}
 
 % --- EDUCACIÓN ---
@@ -141,10 +152,5 @@ Ingeniero de Sistemas y Computación (Universidad Nacional de Colombia) que cons
     \item \textbf{AWS Academy Graduate - Cloud Foundations (20h):} Credly (Noviembre 2025).
     \item \textbf{Curso Básico de Power BI (8h):} Datly Educación (Julio 2025).
 \end{itemize}
-
-% --- IDIOMAS ---
-\section*{Idiomas}
-\noindent
-\textbf{Inglés:} B1 | \textbf{Portugués:} B1
 
 \end{document}

@@ -2,6 +2,7 @@
 import { type Locale } from '../../i18n/locales';
 import { t } from '../../i18n/utils';
 import { getLocalized, formatDate } from '../../utils/content';
+import Section from '../Section.astro';
 
 interface Props {
   locale: Locale;
@@ -9,123 +10,46 @@ interface Props {
 
 const { locale } = Astro.props;
 const translate = t(locale);
-const certs = await getLocalized('certifications', locale);
+const certs = (await getLocalized('certifications', locale)).sort(
+  (a, b) => b.data.issuedDate.valueOf() - a.data.issuedDate.valueOf(),
+);
+
+const degrees = [
+  ['Ingeniería de Sistemas y Computación', 'Universidad Nacional de Colombia', '2018 – 2026'],
+  ['Técnico Laboral en Sistemas Informáticos', 'POLINTEC', '2016'],
+];
 ---
 
-<section id="education" class="scroll-mt-20 py-20">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-
-    <!-- Section header -->
-    <div class="mb-12 font-mono">
-      <p class="mb-1 text-xs text-[#94a3b8]">
-        <span class="text-[#4ade80]">breynerciro@portfolio</span><span class="text-[#94a3b8]">:~/education$</span>
-      </p>
-      <h2 class="text-3xl font-bold text-[#f1f5f9] sm:text-4xl">
-        <span class="text-[#4ade80]">./education</span>
-        <span class="animate-[blink_1.2s_step-end_infinite] text-[#4ade80]">▋</span>
-      </h2>
-      <p class="mt-1 text-xs text-[#94a3b8]">// {translate('education.title')}</p>
-    </div>
-
-    <div class="grid gap-8 lg:grid-cols-2">
-
-      <!-- Degree block -->
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="flex gap-1.5">
-            <span class="terminal-dot dot-red"></span>
-            <span class="terminal-dot dot-yellow"></span>
-            <span class="terminal-dot dot-green"></span>
-          </div>
-          <span class="ml-2 text-xs font-mono text-[#94a3b8]">~/education/degree.md</span>
+<Section id="education" title={translate('education.title')}>
+  <h3 class="mb-2 text-sm font-semibold text-muted">{translate('education.degree')}</h3>
+  <ul class="mb-12 border-t border-line">
+    {degrees.map(([title, school, years]) => (
+      <li class="grid gap-x-8 border-b border-line py-4 sm:grid-cols-4 sm:items-baseline">
+        <div class="sm:col-span-3">
+          <p class="font-display text-xl font-semibold tracking-tight">{title}</p>
+          <p class="text-muted">{school}</p>
         </div>
-        <div class="p-6 font-mono">
-          <p class="mb-5 text-xs text-[#94a3b8]">
-            <span class="text-[#4ade80]">$</span> cat degree.md
+        <p class="text-sm text-muted sm:text-right">{years}</p>
+      </li>
+    ))}
+  </ul>
+
+  <h3 class="mb-2 text-sm font-semibold text-muted">{translate('education.certs')}</h3>
+  <ul class="border-t border-line">
+    {certs.map((cert) => (
+      <li class="grid gap-x-8 border-b border-line py-4 last:border-b-0 sm:grid-cols-4 sm:items-baseline">
+        <div class="sm:col-span-3">
+          <p class="font-semibold">
+            {cert.data.credentialUrl ? (
+              <a href={cert.data.credentialUrl} target="_blank" rel="noopener noreferrer" class="link">{cert.data.title}</a>
+            ) : (
+              cert.data.title
+            )}
           </p>
-          <h3 class="mb-6 text-sm font-bold text-[#4ade80]">
-            # {translate('education.degree')}
-          </h3>
-
-          <!-- Entry 1 -->
-          <div class="mb-5 border-l-2 border-[#1e2d1e] pl-4">
-            <p class="mb-1 text-sm font-semibold text-[#e2e8f0]">
-              Ingeniería de Sistemas y Computación
-            </p>
-            <p class="mb-1 text-xs text-[#94a3b8]">Universidad Nacional de Colombia</p>
-            <p class="text-xs text-[#94a3b8]">2018 — 2026 ✓</p>
-          </div>
-
-          <!-- Entry 2 -->
-          <div class="border-l-2 border-[#1e2d1e] pl-4">
-            <p class="mb-1 text-sm font-semibold text-[#e2e8f0]">
-              Técnico Laboral en Sistemas Informáticos
-            </p>
-            <p class="mb-1 text-xs text-[#94a3b8]">POLINTEC</p>
-            <p class="text-xs text-[#94a3b8]">2016</p>
-          </div>
+          <p class="text-muted">{cert.data.issuer}</p>
         </div>
-      </div>
-
-      <!-- Certifications -->
-      <div>
-        <div class="mb-5 font-mono">
-          <p class="text-xs text-[#94a3b8]">
-            <span class="text-[#4ade80]">$</span> ls ./certifications/
-          </p>
-          <h3 class="mt-1 text-sm font-bold text-[#4ade80]"># {translate('education.certs')}</h3>
-        </div>
-
-        <div class="space-y-3">
-          {certs.length > 0 ? (
-            certs.map((cert) => (
-              <div class="terminal-window transition-all hover:border-[#276749]">
-                <div class="terminal-header">
-                  <div class="flex gap-1.5">
-                    <span class="terminal-dot dot-red"></span>
-                    <span class="terminal-dot dot-yellow"></span>
-                    <span class="terminal-dot dot-green"></span>
-                  </div>
-                  <span class="ml-2 truncate text-xs font-mono text-[#94a3b8]">
-                    {cert.data.title.toLowerCase().replace(/\s+/g, '-')}.cert
-                  </span>
-                </div>
-                <div class="p-4 font-mono">
-                  <p class="mb-0.5 text-sm font-semibold text-[#e2e8f0]">{cert.data.title}</p>
-                  <p class="text-xs text-[#94a3b8]">@ {cert.data.issuer}</p>
-                  <div class="mt-2 flex items-center gap-3">
-                    <span class="text-xs text-[#94a3b8]">
-                      {formatDate(cert.data.issuedDate, locale)}
-                    </span>
-                    {cert.data.credentialUrl && (
-                      <a
-                        href={cert.data.credentialUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-xs font-medium text-[#22d3ee] transition-colors hover:text-[#67e8f9]"
-                      >
-                        → ver credencial
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p class="font-mono text-sm text-[#94a3b8]">
-              <span class="text-[#4ade80]">›</span> No certifications for this language yet.
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<style>
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-  }
-</style>
+        <p class="text-sm text-muted sm:text-right">{formatDate(cert.data.issuedDate, locale)}</p>
+      </li>
+    ))}
+  </ul>
+</Section>

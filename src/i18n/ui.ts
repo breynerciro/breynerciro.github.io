@@ -13,18 +13,18 @@ export const ui = {
     // Hero
     'hero.greeting': 'Hola, soy',
     'hero.name': 'Breyner Ciro',
-    'hero.role': 'Ingeniero de Sistemas / FullStack',
-    'hero.subtitle': 'Construyo producto SaaS de punta a punta (Vue, React, Node.js, GCP/AWS) e integro IA en flujos reales de negocio',
+    'hero.role': "Ingeniero de software full stack en Bogotá",
+    'hero.subtitle': "Construyo producto SaaS de punta a punta y llevo la IA a flujos reales de negocio.",
     'hero.cta': 'Ver proyectos',
     'hero.cta secondary': 'Contactar',
 
+    'hero.now': "En qué trabajo ahora",
+    'cv.download': "Descargar hoja de vida",
+
     // About
     'about.title': 'Sobre mí',
-    'about.p1': 'Ingeniero de Sistemas y Computación (Universidad Nacional de Colombia) que construye producto SaaS de punta a punta: frontend en Vue y React con TypeScript, backends en Node.js y Python, y datos en Firestore, PostgreSQL y BigQuery sobre GCP y AWS.',
-    'about.p2': 'Hoy integro LLMs (Claude, Gemini) en flujos reales de negocio en una plataforma logística. Trabajo con pruebas automatizadas, despliegues en contenedores y buenas prácticas (Clean Code).',
-    'about.stat experience': 'Años de experiencia',
-    'about.stat projects': 'Proyectos destacados',
-    'about.stat clients': 'Menos tiempo de sincronización de datos en producción',
+    'about.p1': "Soy Ingeniero de Sistemas y Computación de la Universidad Nacional de Colombia. Construyo producto SaaS de punta a punta: frontend en Vue y React con TypeScript, backends en Node.js y Python, y datos en PostgreSQL, Firestore y BigQuery.",
+    'about.p2': "En Kila construyo agentes de IA (Claude, Gemini, MCP) que trabajan con datos reales de comercio exterior. Por mi cuenta desarrollo BreVenta, un punto de venta con facturación electrónica, y Denty, una plataforma para consultorios odontológicos que ya está en producción.",
 
     // Skills
     'skills.title': 'Habilidades',
@@ -33,7 +33,7 @@ export const ui = {
     'skills.frontend': 'Frontend & UI',
     'skills.devops': 'DevOps & Cloud',
     'skills.ai': 'IA Aplicada',
-    'skills.methods': 'Metodologías',
+    'skills.methods': "Calidad y prácticas",
     'skills.languages': 'Idiomas',
 
     // Experience
@@ -65,7 +65,7 @@ export const ui = {
 
     // Contact
     'contact.title': 'Contacto',
-    'contact.subtitle': '¿Tienes un proyecto en mente? ¡Hablemos!',
+    'contact.subtitle': "Escríbeme y conversamos sobre tu producto.",
     'contact.email': 'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.github': 'GitHub',
@@ -95,18 +95,18 @@ export const ui = {
     // Hero
     'hero.greeting': "Hi, I'm",
     'hero.name': 'Breyner Ciro',
-    'hero.role': 'Systems Engineer / FullStack',
-    'hero.subtitle': 'I build SaaS products end to end (Vue, React, Node.js, GCP/AWS) and bring AI into real business workflows',
+    'hero.role': "Full stack software engineer in Bogotá",
+    'hero.subtitle': "I build SaaS products end to end and bring AI into real business workflows.",
     'hero.cta': 'View projects',
     'hero.cta secondary': 'Contact me',
 
+    'hero.now': "What I'm working on now",
+    'cv.download': "Download résumé",
+
     // About
     'about.title': 'About Me',
-    'about.p1': 'Systems and Computing Engineer (Universidad Nacional de Colombia) who builds SaaS products end to end: Vue and React frontends with TypeScript, Node.js and Python backends, and data in Firestore, PostgreSQL and BigQuery on GCP and AWS.',
-    'about.p2': 'Today I integrate LLMs (Claude, Gemini) into real business workflows on a logistics platform. I work with automated tests, container deployments and good practices (Clean Code).',
-    'about.stat experience': 'Years of experience',
-    'about.stat projects': 'Featured projects',
-    'about.stat clients': 'Less data sync time in production',
+    'about.p1': "I am a Systems and Computing Engineer from Universidad Nacional de Colombia. I build SaaS products end to end: Vue and React frontends with TypeScript, Node.js and Python backends, and data in PostgreSQL, Firestore and BigQuery.",
+    'about.p2': "At Kila I build AI agents (Claude, Gemini, MCP) that work with real foreign-trade data. On my own I develop BreVenta, a point of sale with electronic invoicing, and Denty, a platform for dental practices that is already in production.",
 
     // Skills
     'skills.title': 'Skills',
@@ -115,7 +115,7 @@ export const ui = {
     'skills.frontend': 'Frontend & UI',
     'skills.devops': 'DevOps & Cloud',
     'skills.ai': 'Applied AI',
-    'skills.methods': 'Methodologies',
+    'skills.methods': "Quality and practices",
     'skills.languages': 'Languages',
 
     // Experience
@@ -147,7 +147,7 @@ export const ui = {
 
     // Contact
     'contact.title': 'Contact',
-    'contact.subtitle': 'Have a project in mind? Let\'s talk!',
+    'contact.subtitle': "Write to me and let's talk about your product.",
     'contact.email': 'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.github': 'GitHub',
@@ -177,18 +177,18 @@ export const ui = {
     // Hero
     'hero.greeting': 'Olá, eu sou',
     'hero.name': 'Breyner Ciro',
-    'hero.role': 'Engenheiro de Sistemas / FullStack',
-    'hero.subtitle': 'Construo produtos SaaS de ponta a ponta (Vue, React, Node.js, GCP/AWS) e integro IA em fluxos reais de negócio',
+    'hero.role': "Engenheiro de software full stack em Bogotá",
+    'hero.subtitle': "Construo produtos SaaS de ponta a ponta e levo a IA a fluxos reais de negócio.",
     'hero.cta': 'Ver projetos',
     'hero.cta secondary': 'Entrar em contato',
 
+    'hero.now': "No que estou trabalhando agora",
+    'cv.download': "Baixar currículo",
+
     // About
     'about.title': 'Sobre Mim',
-    'about.p1': 'Engenheiro de Sistemas e Computação (Universidad Nacional de Colombia) que constrói produtos SaaS de ponta a ponta: frontend em Vue e React com TypeScript, backends em Node.js e Python, e dados em Firestore, PostgreSQL e BigQuery no GCP e AWS.',
-    'about.p2': 'Hoje integro LLMs (Claude, Gemini) em fluxos reais de negócio em uma plataforma logística. Trabalho com testes automatizados, implantações em contêineres e boas práticas (Clean Code).',
-    'about.stat experience': 'Anos de experiência',
-    'about.stat projects': 'Projetos em destaque',
-    'about.stat clients': 'Menos tempo de sincronização de dados em produção',
+    'about.p1': "Sou Engenheiro de Sistemas e Computação pela Universidad Nacional de Colombia. Construo produtos SaaS de ponta a ponta: frontend em Vue e React com TypeScript, backends em Node.js e Python, e dados em PostgreSQL, Firestore e BigQuery.",
+    'about.p2': "Na Kila construo agentes de IA (Claude, Gemini, MCP) que trabalham com dados reais de comércio exterior. Por conta própria desenvolvo o BreVenta, um ponto de venda com faturamento eletrônico, e o Denty, uma plataforma para consultórios odontológicos que já está em produção.",
 
     // Skills
     'skills.title': 'Habilidades',
@@ -197,7 +197,7 @@ export const ui = {
     'skills.frontend': 'Frontend & UI',
     'skills.devops': 'DevOps & Cloud',
     'skills.ai': 'IA Aplicada',
-    'skills.methods': 'Metodologias',
+    'skills.methods': "Qualidade e práticas",
     'skills.languages': 'Idiomas',
 
     // Experience
@@ -229,7 +229,7 @@ export const ui = {
 
     // Contact
     'contact.title': 'Contato',
-    'contact.subtitle': 'Tem um projeto em mente? Vamos conversar!',
+    'contact.subtitle': "Escreva para mim e conversamos sobre o seu produto.",
     'contact.email': 'Email',
     'contact.linkedin': 'LinkedIn',
     'contact.github': 'GitHub',

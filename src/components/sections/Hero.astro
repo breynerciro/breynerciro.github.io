@@ -9,80 +9,83 @@ interface Props {
 const { locale } = Astro.props;
 const translate = t(locale);
 
-const projectsPath = localizedHref(locale, '/#projects');
-const contactPath  = localizedHref(locale, '/#contact');
+const now = {
+  es: [
+    ['Kila', 'Plataforma SaaS de comercio exterior: agentes de IA, frontend y datos.', 'Trabajo actual'],
+    ['BreVenta', 'Punto de venta y facturación electrónica DIAN para varias empresas.', 'Producto propio'],
+    ['Denty', 'Gestión de consultorios odontológicos con asistente de WhatsApp.', 'En producción'],
+  ],
+  en: [
+    ['Kila', 'Foreign-trade SaaS platform: AI agents, frontend and data.', 'Current job'],
+    ['BreVenta', 'Point of sale and electronic invoicing for multiple companies.', 'Own product'],
+    ['Denty', 'Dental practice management with a WhatsApp assistant.', 'In production'],
+  ],
+  pt: [
+    ['Kila', 'Plataforma SaaS de comércio exterior: agentes de IA, frontend e dados.', 'Trabalho atual'],
+    ['BreVenta', 'Ponto de venda e faturamento eletrônico para várias empresas.', 'Produto próprio'],
+    ['Denty', 'Gestão de consultórios odontológicos com assistente de WhatsApp.', 'Em produção'],
+  ],
+}[locale];
+const sceneLabels = { es: 'Interfaz,API,IA,Datos,Nube', en: 'Interface,API,AI,Data,Cloud', pt: 'Interface,API,IA,Dados,Nuvem' }[locale];
+const hrefs = ['/#experience', '/projects/breventa/', '/projects/denty/'].map((h) => localizedHref(locale, h));
 ---
 
-<section
-  id="home"
-  class="relative flex min-h-[90vh] items-center overflow-hidden"
->
-  <!-- Background: subtle radial glow, no rounded blobs -->
-  <div class="pointer-events-none absolute inset-0 -z-10">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(74,222,128,0.06),transparent)]"></div>
-  </div>
+<!-- Escena 3D fija detrás de la página: las capas de un producto, de la interfaz a la nube.
+     Se iluminan las capas que toca lo que se está leyendo (elementos con data-layers). -->
+<canvas id="scene" aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 h-full w-full"></canvas>
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 hidden overflow-hidden lg:block">
+  {sceneLabels.split(',').map((label) => (
+    <span data-scene-label class="absolute left-0 top-0 text-sm font-semibold opacity-0">{label}</span>
+  ))}
+</div>
 
-  <div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
-    <div class="max-w-3xl">
+<!-- El color de la franja va en ::before (z -20) para que la escena (z -10) quede entre el fondo y el texto -->
+<section id="home" class="on-band relative text-white before:absolute before:inset-0 before:-z-20 before:bg-band">
+  <div class="mx-auto max-w-6xl px-5 pb-12 pt-16 sm:px-8 lg:pb-16 lg:pt-24">
+    <p class="enter mb-6 flex flex-wrap gap-x-3 text-lg sm:text-xl">
+      <span class="font-bold">{translate('hero.name')}</span>
+      <span class="text-white/80">{translate('hero.role')}</span>
+    </p>
 
-      <!-- Breadcrumb prompt -->
-      <p class="mb-6 font-mono text-xs text-[#94a3b8]">
-        <span class="text-[#4ade80]">breynerciro@portfolio</span><!-- 
-     --><span class="text-[#94a3b8]">:~$</span>
-        <span class="ml-1 text-[#e2e8f0]">{translate('hero.greeting')}</span>
-      </p>
+    <h1 style="--i:1" class="enter max-w-5xl text-balance font-display text-[clamp(2.5rem,7vw,5.5rem)] lg:max-w-[60%] lg:text-[clamp(3rem,4.6vw,4.5rem)] font-semibold leading-[0.98] tracking-[-0.03em]">
+      {translate('hero.subtitle')}
+    </h1>
 
-      <!-- Name — white, large, dominant -->
-      <h1 class="mb-3 font-mono text-5xl font-extrabold tracking-tight text-[#f1f5f9] sm:text-6xl lg:text-7xl">
-        {translate('hero.name')}<span class="text-[#4ade80] animate-[blink_1.2s_step-end_infinite]">▋</span>
-      </h1>
+    <div style="--i:3" class="enter mt-10 flex flex-wrap gap-3">
+      <a href={localizedHref(locale, '/#projects')} class="btn btn-solid">{translate('hero.cta')}</a>
+      <a href={`/cv/breyner-ciro-cv-${locale}.pdf`} download class="btn">
+        {translate('cv.download')}
+      </a>
+      <a href={localizedHref(locale, '/#contact')} class="btn">{translate('hero.cta secondary')}</a>
+    </div>
 
-      <!-- Role — accent green, readable size -->
-      <h2 class="mb-5 font-mono text-lg font-semibold text-[#4ade80] sm:text-xl">
-        // {translate('hero.role')}
-      </h2>
+    <!-- En pantallas angostas la escena 3D ocupa este espacio en vez de ir detrás del texto -->
+    <div id="scene-slot" class="mt-8 h-80 lg:hidden"></div>
 
-      <!-- Subtitle — neutral gray -->
-      <p class="mb-10 max-w-2xl font-mono text-sm leading-relaxed text-[#94a3b8] sm:text-base">
-        {translate('hero.subtitle')}
-      </p>
-
-      <!-- CTAs -->
-      <div class="flex flex-wrap gap-4 font-mono">
-        <a
-          href={projectsPath}
-          class="inline-flex items-center gap-2 border border-[#4ade80] bg-[#4ade80]/10 px-6 py-3
-                 text-sm font-bold text-[#4ade80] transition-all
-                 hover:bg-[#4ade80] hover:text-black"
-        >
-          <span class="opacity-60">$</span> {translate('hero.cta')}
-        </a>
-        <a
-          href={contactPath}
-          class="inline-flex items-center gap-2 border border-[#1e2d1e] bg-transparent px-6 py-3
-                 text-sm font-bold text-[#94a3b8] transition-all
-                 hover:border-[#4ade80] hover:text-[#e2e8f0]"
-        >
-          <span class="text-[#4ade80]">→</span> {translate('hero.cta secondary')}
-        </a>
-      </div>
-
-      <!-- Tech stack badges -->
-      <div class="mt-12 flex flex-wrap gap-2 font-mono">
-        {['Node.js', 'Vue.js', 'PostgreSQL', 'Docker', 'AWS', 'TypeScript'].map((tech) => (
-          <span class="border border-[#1e2d1e] bg-[#0d0d0d] px-3 py-1 text-xs text-[#94a3b8]
-                       transition-colors hover:border-[#276749] hover:text-[#e2e8f0]">
-            {tech}
-          </span>
+    <div style="--i:5" class="enter mt-8 lg:mt-24">
+      <h2 class="mb-3 text-sm font-semibold text-white/80">{translate('hero.now')}</h2>
+      <ul class="border-t border-white/30">
+        {now.map(([name, what, status], i) => (
+          <li class="border-b border-white/30">
+            <a href={hrefs[i]} class="group grid gap-x-8 gap-y-1 py-4 sm:grid-cols-12 sm:items-baseline">
+              <span class="font-display text-2xl font-semibold sm:col-span-3">{name}</span>
+              <span class="text-white/90 decoration-mark decoration-2 underline-offset-4 group-hover:underline sm:col-span-6">{what}</span>
+              <span class="text-sm text-white/75 sm:col-span-3 sm:text-right">{status}</span>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </div>
 </section>
 
-<style>
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
+<script>
+  // three.js se carga aparte, después del primer pintado; sin WebGL la página queda igual, sin escena.
+  const canvas = document.getElementById('scene') as HTMLCanvasElement | null;
+  const hero = document.getElementById('home');
+  if (canvas && hero) {
+    import('../../scripts/scene')
+      .then((m) => m.start(canvas, hero, [...document.querySelectorAll<HTMLElement>('[data-scene-label]')]))
+      .catch(() => canvas.remove());
   }
-</style>
+</script>

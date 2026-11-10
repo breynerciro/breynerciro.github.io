@@ -59,6 +59,6 @@ export async function getAllLocalesByKey<T extends CollectionName>(
 export function formatDate(date: Date, locale: Locale): string {
   return new Intl.DateTimeFormat(
     locale === 'pt' ? 'pt-BR' : locale === 'en' ? 'en-US' : 'es-CO',
-    { year: 'numeric', month: 'long' },
+    { year: 'numeric', month: 'long', timeZone: 'UTC' }, // UTC: las fechas del contenido no tienen hora
   ).format(date);
 }

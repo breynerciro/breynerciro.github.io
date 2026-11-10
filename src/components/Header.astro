@@ -2,6 +2,7 @@
 import { type Locale } from '../i18n/locales';
 import { t, localizedHref } from '../i18n/utils';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   locale: Locale;
@@ -12,9 +13,9 @@ const translate = t(locale);
 
 const navLinks = [
   { key: 'nav.about',      href: localizedHref(locale, '/#about') },
-  { key: 'nav.skills',     href: localizedHref(locale, '/#skills') },
   { key: 'nav.experience', href: localizedHref(locale, '/#experience') },
   { key: 'nav.projects',   href: localizedHref(locale, '/#projects') },
+  { key: 'nav.skills',     href: localizedHref(locale, '/#skills') },
   { key: 'nav.education',  href: localizedHref(locale, '/#education') },
   { key: 'nav.blog',       href: localizedHref(locale, '/blog/') },
   { key: 'nav.contact',    href: localizedHref(locale, '/#contact') },
@@ -23,84 +24,46 @@ const navLinks = [
 const homePath = localizedHref(locale, '/');
 ---
 
-<header
-  class="sticky top-0 z-50 border-b border-[#1e2d1e] bg-[#0d0d0d]/95 backdrop-blur-md"
->
-  <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+<header class="sticky top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-md">
+  <nav class="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+    <a href={homePath} class="font-display text-lg font-bold tracking-tight">Breyner Ciro</a>
 
-    <!-- Logo -->
-    <a
-      href={homePath}
-      class="font-mono text-sm font-bold tracking-tight transition-colors
-             hover:opacity-80"
-    >
-      <span class="text-[#4ade80]">breynerciro</span><!-- 
-   --><span class="text-[#94a3b8]">@</span><!-- 
-   --><span class="text-[#e2e8f0]">portfolio</span><!-- 
-   --><span class="text-[#4ade80] animate-pulse">▋</span>
-    </a>
-
-    <!-- Desktop nav -->
-    <ul class="hidden items-center gap-0.5 md:flex">
+    <ul class="hidden items-center gap-5 lg:flex">
       {navLinks.map((link) => (
         <li>
-          <a
-            href={link.href}
-            class="relative px-3 py-2 text-xs font-mono text-[#94a3b8] transition-colors
-                   hover:text-[#e2e8f0]
-                   after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px
-                   after:bg-[#4ade80] after:scale-x-0 after:transition-transform
-                   hover:after:scale-x-100"
-          >
+          <a href={link.href} class="text-sm font-medium text-muted transition-colors hover:text-text">
             {translate(link.key)}
           </a>
         </li>
       ))}
     </ul>
 
-    <!-- Actions -->
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-1">
       <LanguageSwitcher currentLocale={locale} />
-
-      <!-- Mobile menu button -->
+      <ThemeToggle />
       <button
         id="mobile-menu-toggle"
         type="button"
-        aria-label="Open menu"
-        class="flex h-9 w-9 items-center justify-center border border-[#1e2d1e]
-               text-[#94a3b8] transition-colors hover:border-[#276749] hover:text-[#e2e8f0]
-               md:hidden"
+        aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="flex h-10 w-10 items-center justify-center rounded-full text-muted transition-colors hover:text-text lg:hidden"
       >
-        <svg id="icon-menu" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="square" stroke-linejoin="miter" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        <svg id="icon-menu" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+          <path stroke-linecap="round" d="M3.75 7.5h16.5M3.75 16.5h16.5" />
         </svg>
-        <svg id="icon-close" class="hidden h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="square" stroke-linejoin="miter" d="M6 18L18 6M6 6l12 12" />
+        <svg id="icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+          <path stroke-linecap="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
   </nav>
 
-  <!-- Mobile menu -->
-  <div
-    id="mobile-menu"
-    class="hidden border-t border-[#1e2d1e] bg-[#0d0d0d] px-4 pb-4 pt-2 md:hidden"
-  >
-    <!-- Terminal-style path -->
-    <p class="mb-2 text-xs font-mono text-[#94a3b8]">
-      <span class="text-[#4ade80]">breynerciro@portfolio</span>
-      <span class="text-[#94a3b8]">:~$</span>
-      <span class="ml-1 text-[#e2e8f0]">ls -1</span>
-    </p>
-    <ul class="space-y-0.5">
+  <div id="mobile-menu" class="hidden border-t border-line px-5 pb-4 pt-2 lg:hidden">
+    <ul>
       {navLinks.map((link) => (
         <li>
-          <a
-            href={link.href}
-            class="flex items-center gap-2 px-2 py-2 text-sm font-mono text-[#94a3b8]
-                   transition-colors hover:text-[#e2e8f0]"
-          >
-            <span class="text-[#4ade80] text-xs">→</span>
+          <a href={link.href} class="block py-2.5 font-display text-xl font-semibold">
             {translate(link.key)}
           </a>
         </li>
@@ -111,26 +74,21 @@ const homePath = localizedHref(locale, '/');
 
 <script>
   function initMobileMenu() {
-    const toggle  = document.getElementById('mobile-menu-toggle');
-    const menu    = document.getElementById('mobile-menu');
-    const iconMenu  = document.getElementById('icon-menu');
+    const toggle = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const iconMenu = document.getElementById('icon-menu');
     const iconClose = document.getElementById('icon-close');
     if (!toggle || !menu) return;
 
-    toggle.addEventListener('click', () => {
-      const isOpen = !menu.classList.contains('hidden');
-      menu.classList.toggle('hidden');
-      iconMenu?.classList.toggle('hidden', !isOpen);
-      iconClose?.classList.toggle('hidden', isOpen);
-    });
+    const setOpen = (open: boolean) => {
+      menu.classList.toggle('hidden', !open);
+      iconMenu?.classList.toggle('hidden', open);
+      iconClose?.classList.toggle('hidden', !open);
+      toggle.setAttribute('aria-expanded', String(open));
+    };
 
-    menu.querySelectorAll('a').forEach((a) => {
-      a.addEventListener('click', () => {
-        menu.classList.add('hidden');
-        iconMenu?.classList.remove('hidden');
-        iconClose?.classList.add('hidden');
-      });
-    });
+    toggle.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
   }
 
   initMobileMenu();

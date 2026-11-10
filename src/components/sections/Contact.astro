@@ -1,6 +1,7 @@
 ---
-import { type Locale } from '../../i18n/locales';
+import { locales, localeLabels, type Locale } from '../../i18n/locales';
 import { t } from '../../i18n/utils';
+import Section from '../Section.astro';
 
 interface Props {
   locale: Locale;
@@ -8,95 +9,28 @@ interface Props {
 
 const { locale } = Astro.props;
 const translate = t(locale);
-
-const contactLinks = [
-  {
-    key: 'contact.email',
-    label: 'email',
-    value: 'breynerismael@gmail.com',
-    href: 'mailto:breynerismael@gmail.com',
-    prefix: '@',
-  },
-  {
-    key: 'contact.linkedin',
-    label: 'linkedin',
-    value: 'linkedin.com/in/breyner-ciro',
-    href: 'https://linkedin.com/in/breyner-ciro',
-    prefix: 'in',
-    external: true,
-  },
-  {
-    key: 'contact.github',
-    label: 'github',
-    value: 'github.com/breynerciro',
-    href: 'https://github.com/breynerciro',
-    prefix: 'gh',
-    external: true,
-  },
-  {
-    key: 'contact.location',
-    label: 'location',
-    value: translate('contact.locationValue'),
-    href: '#',
-    prefix: '>>',
-  },
-];
+const cv = (l: Locale) => `/cv/breyner-ciro-cv-${l}.pdf`;
 ---
 
-<section id="contact" class="scroll-mt-20 py-20">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+<Section id="contact" title={translate('contact.title')}>
+  <p class="mb-3 text-lg text-muted sm:text-xl">{translate('contact.subtitle')}</p>
+  <a
+    href="mailto:breynerismael@gmail.com"
+    class="font-display text-[clamp(1.5rem,4.5vw,3rem)] font-semibold tracking-tight underline decoration-mark decoration-[3px] underline-offset-[6px] [overflow-wrap:anywhere] hover:text-accent"
+  >
+    breynerismael@gmail.com
+  </a>
 
-    <!-- Section header -->
-    <div class="mb-12 font-mono text-center">
-      <p class="mb-1 text-xs text-[#94a3b8]">
-        <span class="text-[#4ade80]">breynerciro@portfolio</span><span class="text-[#94a3b8]">:~/contact$</span>
-      </p>
-      <h2 class="text-3xl font-bold text-[#f1f5f9] sm:text-4xl">
-        <span class="text-[#4ade80]">./contact</span>
-        <span class="animate-[blink_1.2s_step-end_infinite] text-[#4ade80]">▋</span>
-      </h2>
-      <p class="mt-2 text-sm text-[#94a3b8]">{translate('contact.subtitle')}</p>
-    </div>
+  <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2">
+    <li><a href="https://www.linkedin.com/in/breyner-ciro-38011330b/" target="_blank" rel="noopener noreferrer" class="link">LinkedIn</a></li>
+    <li><a href="https://github.com/breynerciro" target="_blank" rel="noopener noreferrer" class="link">GitHub</a></li>
+    <li class="text-muted">{translate('contact.locationValue')}</li>
+  </ul>
 
-    <div class="mx-auto grid max-w-2xl gap-4 sm:grid-cols-2">
-      {contactLinks.map((link) => (
-        <a
-          href={link.href}
-          target={link.external ? '_blank' : undefined}
-          rel={link.external ? 'noopener noreferrer' : undefined}
-          class="terminal-window group flex items-center gap-4 p-5 transition-all
-                 hover:border-[#276749]"
-        >
-          <!-- Monospace prefix badge -->
-          <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center border border-[#1e2d1e]
-                      font-mono text-xs font-bold text-[#4ade80] transition-colors
-                      group-hover:border-[#4ade80]">
-            {link.prefix}
-          </div>
-
-          <!-- Label + value -->
-          <div class="min-w-0 font-mono">
-            <p class="text-xs text-[#94a3b8]">{link.label}</p>
-            <p class="mt-0.5 truncate text-sm font-semibold text-[#e2e8f0] transition-colors
-                      group-hover:text-[#4ade80]">
-              {link.value}
-            </p>
-          </div>
-
-          {link.external && (
-            <span class="ml-auto flex-shrink-0 text-xs text-[#94a3b8] transition-colors
-                         group-hover:text-[#4ade80]">→</span>
-          )}
-        </a>
-      ))}
-    </div>
-
-  </div>
-</section>
-
-<style>
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-  }
-</style>
+  <p class="mt-6 text-muted">
+    {translate('cv.download')} (PDF):{' '}
+    {locales.map((l, i) => (
+      <>{i > 0 && ' / '}<a href={cv(l)} download hreflang={l} class="link">{localeLabels[l]}</a></>
+    ))}
+  </p>
+</Section>

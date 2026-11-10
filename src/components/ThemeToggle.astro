@@ -9,9 +9,8 @@
   id="theme-toggle"
   type="button"
   aria-label="Toggle theme"
-  class="relative flex h-10 w-10 items-center justify-center rounded-lg
-         bg-surface-200 text-text-muted transition-colors hover:bg-surface-300
-         dark:bg-surface-800 dark:text-surface-300 dark:hover:bg-surface-800/80"
+  class="relative flex h-10 w-10 items-center justify-center rounded-full
+         text-muted transition-colors hover:text-text"
 >
   <!-- Sun icon (shown in dark mode) -->
   <svg
@@ -56,7 +55,7 @@
       const next = isDark ? 'light' : 'dark';
 
       document.documentElement.classList.toggle('dark', !isDark);
-      localStorage.setItem('theme', next);
+      try { localStorage.setItem('theme', next); } catch {}
     });
   }
 

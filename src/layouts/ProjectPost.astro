@@ -28,40 +28,26 @@ const links = [
   description={data.description}
   canonicalPath={`/projects/${slugFromId(entry.id)}/`}
 >
-  <article class="py-16 font-mono">
-    <div class="mx-auto max-w-3xl px-4 sm:px-6">
-      <a
-        href={localizedHref(locale, '/#projects')}
-        class="mb-8 inline-block text-sm text-[#94a3b8] transition-colors hover:text-[#4ade80]"
-      >
+  <article class="py-12 lg:py-16">
+    <div class="mx-auto max-w-3xl px-5 sm:px-8">
+      <a href={localizedHref(locale, '/#projects')} class="link mb-8 inline-block text-sm">
         {translate('projects.back')}
       </a>
 
-      <header class="mb-10">
-        <h1 class="mb-4 text-3xl font-extrabold text-[#f1f5f9] sm:text-4xl">{data.title}</h1>
-        <p class="mb-5 text-sm leading-relaxed text-[#94a3b8]">{data.description}</p>
-        <ul class="mb-5 flex flex-wrap gap-1.5">
-          {data.stack.map((s) => (
-            <li class="border border-[#1e2d1e] bg-[#0d0d0d] px-2 py-0.5 text-xs text-[#94a3b8]">{s}</li>
-          ))}
-        </ul>
+      <header class="mb-10 border-b border-line pb-8">
+        <h1 class="mb-4 text-balance font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{data.title}</h1>
+        <p class="mb-5 text-lg leading-relaxed text-muted">{data.description}</p>
+        <p class="text-sm"><span class="font-semibold">{translate('projects.stack')}:</span> <span class="text-muted">{data.stack.join(', ')}</span></p>
         {links.length > 0 && (
-          <div class="flex flex-wrap gap-3 text-sm">
+          <div class="mt-6 flex flex-wrap gap-3">
             {links.map((l) => (
-              <a
-                href={l.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="border border-[#4ade80] px-4 py-2 font-bold text-[#4ade80] transition-all hover:bg-[#4ade80] hover:text-black"
-              >
-                {l.label} ↗
-              </a>
+              <a href={l.url} target="_blank" rel="noopener noreferrer" class="btn">{l.label}</a>
             ))}
           </div>
         )}
       </header>
 
-      <div class="prose prose-neutral dark:prose-invert max-w-none">
+      <div class="prose max-w-none">
         <Content />
       </div>
     </div>
