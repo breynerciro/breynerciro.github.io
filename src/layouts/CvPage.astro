@@ -38,7 +38,7 @@ const period = (from: Date, to?: Date) =>
       <header>
         <h1>Breyner Ismael Ciro Otero</h1>
         <p class="cv-role">{translate('hero.role')}</p>
-        <p>Bogotá, Colombia | +57 318 342 0438 | breynerismael@gmail.com</p>
+        <p>Bogotá, Colombia<span id="cv-phone"></span> | breynerismael@gmail.com</p>
         <p>
           linkedin.com/in/breyner-ciro-38011330b | github.com/breynerciro |{' '}
           <a href={`${site}${localizedHref(locale, '/')}`}>breynerciro.github.io</a>
@@ -91,6 +91,11 @@ const period = (from: Date, to?: Date) =>
 
 <script>
   document.getElementById('cv-print')?.addEventListener('click', () => print());
+  // El teléfono solo va en el PDF: se escribe al imprimir y se borra al volver a la página,
+  // así no queda en el HTML publicado.
+  const phone = document.getElementById('cv-phone');
+  addEventListener('beforeprint', () => { if (phone) phone.textContent = ' | ' + ['+57', '318', '342', '0438'].join(' '); });
+  addEventListener('afterprint', () => { if (phone) phone.textContent = ''; });
 </script>
 
 <style>
