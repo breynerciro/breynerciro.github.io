@@ -10,6 +10,7 @@ import {
 import { LAYERS } from '../utils/layers';
 
 const SIZE = 3, GAP = 1.2, CAM_Z = 14, FOV = 35;
+const HALF_H = 4.3; // media altura en pantalla de la pila, en unidades de escala (medida a ojo)
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const smooth = (t: number) => { t = Math.min(1, Math.max(0, t)); return t * t * (3 - 2 * t); };
 const rnd = (i: number) => Math.abs(Math.sin(i * 12.9898) * 43758.5453) % 1;
@@ -132,6 +133,9 @@ export function start(canvas: HTMLCanvasElement, hero: HTMLElement, labelEls: HT
   // ── Estado ──
   const tagged = [...document.querySelectorAll<HTMLElement>('[data-layers]')];
   const slot = document.getElementById('scene-slot');
+  const headings = [...document.querySelectorAll<HTMLElement>('main section[id]')]
+    .map((sec) => ({ sec, h2: sec.querySelector('h2') }))
+    .filter((x): x is { sec: HTMLElement; h2: HTMLHeadingElement } => !!x.h2);
   let hovered: HTMLElement | null = null;
   let w = 0, h = 0, visH = 0, visW = 0;
   let p = 0, intro = reduced ? 1 : 0, mx = 0, my = 0, tx = 0, ty = 0, focusY = 0, zoom = 1, raf = 0, t0 = 0;
@@ -199,6 +203,18 @@ export function start(canvas: HTMLCanvasElement, hero: HTMLElement, labelEls: HT
 
     const wide = w >= 1024;
     let fx = lerp(0.79, 0.15, p), fy = lerp(0.55, 0.66, p), s = (lerp(0.74, 0.42, p) * visH) / 7;
+    if (wide && p > 0.5) {
+      // La escena va debajo del título de la sección que se está leyendo, nunca encima de él
+      const line = h * 0.45;
+      const sec = headings.find(({ sec }) => { const r = sec.getBoundingClientRect(); return r.top <= line && r.bottom > line; })
+        ?? headings.filter(({ sec }) => sec.getBoundingClientRect().top < h).pop();
+      if (sec) {
+        const below = Math.max(sec.h2.getBoundingClientRect().bottom, 0) + 32, half = (HALF_H * s * h) / visH;
+        const room = Math.min(h, sec.sec.getBoundingClientRect().bottom) - below - 24; // hasta el final de la sección o de la pantalla
+        if (2 * half > room) { s *= Math.max(room, 0) / (2 * half); }
+        fy = Math.max(fy, (below + (HALF_H * s * h) / visH) / h);
+      }
+    }
     if (!wide) {
       // Pantalla angosta: la escena vive en su espacio del hero y se va con él al hacer scroll
       const r = slot?.getBoundingClientRect();
